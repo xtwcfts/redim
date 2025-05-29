@@ -1,0 +1,1418 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>素质标杆-2041寝室</title>
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            min-width: 320px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        /* 导航栏 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-width: 320px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .school-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 55px;
+            width: 55px;
+            z-index: 1001;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: white;
+        }
+        
+        .school-logo img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+            white-space: nowrap;
+        }
+        
+        .logo span {
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* 英雄区域 - 轮播图 */
+        .hero {
+            height: 80vh;
+            min-height: 500px;
+            max-height: 800px;
+            position: relative;
+            overflow: hidden;
+            min-width: 320px;
+        }
+        
+        .slider {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: white;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-btn:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .prev-btn {
+            left: 20px;
+        }
+        
+        .next-btn {
+            right: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 关于寝室 */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+            min-width: 320px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .about-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* 成员介绍 */
+        .members {
+            padding: 5rem 0;
+            background-color: #f5f7fa;
+            min-width: 320px;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .member-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .member-img {
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .member-card:hover .member-img img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .member-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .member-info p.position {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .member-info p.bio {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            color: var(--primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* 相册 */
+        .gallery {
+            padding: 5rem 0;
+            background-color: white;
+            min-width: 320px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay h3 {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        /* 视频部分 */
+        .video-section {
+            margin-top: 4rem;
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .video-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-caption {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* 图片查看器 */
+        .image-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .image-viewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .image-viewer-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .image-viewer-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .close-viewer {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-viewer:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        /* 联系方式弹窗 */
+        .contact-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .contact-popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .contact-popup-content img {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        
+        .contact-popup-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-popup:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        /* 联系我们 */
+        .contact {
+            padding: 5rem 0;
+            background-color: #f5f7fa;
+            min-width: 320px;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            margin-bottom: 2rem;
+            color: var(--gray);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details div:hover {
+            color: var(--accent);
+        }
+        
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            min-width: 320px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding-left: 60px;
+            }
+            
+            .school-logo {
+                left: 10px;
+                height: 50px;
+                width: 50px;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+                margin-left: 0;
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 0.5rem 0.5rem;
+            }
+            
+            .hero {
+                height: 70vh;
+                min-height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-img {
+                height: 250px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-popup-content {
+                padding: 1.5rem;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .school-logo {
+                height: 45px;
+                width: 45px;
+                border-width: 1px;
+            }
+            
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .video-container {
+                max-width: 100%;
+            }
+
+            .contact-popup-content {
+                padding: 1rem;
+            }
+            
+            .slider-nav {
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.9rem;
+            }
+            
+            .about-card, .member-info {
+                padding: 1.5rem;
+            }
+
+            .contact-popup-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .slider-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="school-logo">
+            <img src="http://jwwx.fyvtc.edu.cn/static/images/logo/fyvtc-logo.gif" alt="校徽">
+        </div>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>素质标杆-2041寝室</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#members">成员介绍</a></li>
+                    <li><a href="#gallery">寝室精彩文化</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 英雄区域 - 轮播图 -->
+    <section class="hero" id="home">
+        <div class="slider">
+            <!-- 轮播图1 -->
+            <div class="slide">
+                <img src="https://img.picui.cn/free/2025/05/24/6831a23adbe40.jpg" alt="寝室照片1">
+                <div class="slide-content">
+                    <div class="hero-content">
+                        <h1>2041 素质寝室</h1>
+                        <p>来自五湖四海的我们，在这里相遇、相知、共同成长，创造属于我们的青春记忆</p>
+                        <a href="#members" class="btn">认识我们</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播图2 -->
+            <div class="slide">
+                <img src="https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg" alt="寝室照片2">
+                <div class="slide-content">
+                    <div class="hero-content">
+                        <h1>2041 素质寝室</h1>
+                        <p>团结友爱，互帮互助，共同进步是我们的寝室文化</p>
+                        <a href="#members" class="btn">认识我们</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播图3 -->
+            <div class="slide">
+                <img src="https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg" alt="寝室照片3">
+                <div class="slide-content">
+                    <div class="hero-content">
+                        <h1>2041 素质寝室</h1>
+                        <p>寝室徽章设计三等奖获得者，展示我们的创意与才华</p>
+                        <a href="#members" class="btn">认识我们</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 轮播图导航点 -->
+        <div class="slider-nav">
+            <div class="slider-dot active" data-index="0"></div>
+            <div class="slider-dot" data-index="1"></div>
+            <div class="slider-dot" data-index="2"></div>
+        </div>
+        
+        <!-- 轮播图按钮 -->
+        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+    </section>
+    
+    <!-- 关于寝室 -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于2041寝室</h2>
+                <p>我们是一个来自信息安全专业、不同性格的同学组成的温馨集体，在这里我们互相学习、共同进步</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>专业</h3>
+                    <p>计算机类|信息安全技术应用</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>荣誉成就</h3>
+                    <p>寝室徽章设计三等奖</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>寝室文化</h3>
+                    <p>"一人有难，五人支援"是我们的座右铭，建立了深厚的友谊</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 成员介绍 -->
+    <section class="members" id="members">
+        <div class="container">
+            <div class="section-title">
+                <h2>寝室成员</h2>
+                <p>认识我们2041寝室的六位优秀少爷，每个人都有独特的才华和个性</p>
+            </div>
+            
+            <div class="members-grid">
+                <!-- 成员1 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831ac5c4e55c.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831ac5c4e55c.jpg" alt="武少">
+                    </div>
+                    <div class="member-info">
+                        <h3>武少</h3>
+                        <p class="position">寝室长 / 信息安全</p>
+                        <p class="bio">来自安徽</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成员2 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a7c8655d6.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831a7c8655d6.jpg" alt="杨少">
+                    </div>
+                    <div class="member-info">
+                        <h3>杨少</h3>
+                        <p class="position">无 / 信息安全</p>
+                        <p class="bio">来自安徽</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成员3 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831e25795fad.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831e25795fad.jpg" alt="夏少">
+                    </div>
+                    <div class="member-info">
+                        <h3>夏少</h3>
+                        <p class="position">无 / 信息安全</p>
+                        <p class="bio">来自安徽</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成员4 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a8100df8d.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831a8100df8d.jpg" alt="张少">
+                    </div>
+                    <div class="member-info">
+                        <h3>张少</h3>
+                        <p class="position">无 / 信息安全</p>
+                        <p class="bio">来自安徽</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成员5 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a824d10ae.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831a824d10ae.jpg" alt="燕少">
+                    </div>
+                    <div class="member-info">
+                        <h3>燕少</h3>
+                        <p class="position">无 / 信息安全</p>
+                        <p class="bio">来自安徽</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成员6 -->
+                <div class="member-card">
+                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a5a0b60b4.jpg')">
+                        <img src="https://img.picui.cn/free/2025/05/24/6831a5a0b60b4.jpg" alt="许少">
+                    </div>
+                    <div class="member-info">
+                        <h3>许少</h3>
+                        <p class="position">无 / 信息安全</p>
+                        <p class="bio">来自太平洋</p>
+                        <div class="social-links">
+                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
+                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 相册和视频 -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>寝室精彩文化</h2>
+                <p>记录我们在一起的每一个精彩瞬间</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg')">
+                    <img src="https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg" alt="校园风采">
+                    <div class="gallery-overlay">
+                        <h3>校园美景</h3>
+                    </div>
+                </div>
+                
+                 <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg')">
+                    <img src="https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg" alt="寝室徽章">
+                    <div class="gallery-overlay">
+                        <h3>寝室徽章</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a94e6461c.jpg')">
+                    <img src="https://img.picui.cn/free/2025/05/24/6831a94e6461c.jpg" alt="比赛获奖">
+                    <div class="gallery-overlay">
+                        <h3>寝室设计</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新增的视频部分 -->
+            <div class="video-section">
+                <div class="section-title">
+                    <h2>寝室视频记录</h2>
+                    <p>观看我们的精彩视频片段</p>
+                </div>
+                
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="http://m.0wd.cn/2eMWOr" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="video-caption">2041寝室日常记录</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 图片查看器 -->
+    <div class="image-viewer" id="imageViewer">
+        <span class="close-viewer" onclick="closeImageViewer()">&times;</span>
+        <div class="image-viewer-content">
+            <img id="viewedImage" src="" alt="">
+        </div>
+    </div>
+
+    <!-- 联系方式弹窗 -->
+    <div class="contact-popup" id="contactPopup">
+        <div class="contact-popup-content">
+            <span class="close-popup" onclick="closeContactPopup()">&times;</span>
+            <img src="https://img.picui.cn/free/2025/05/25/68327e81994a6.jpg" alt="联系方式">
+            <h3>2041寝室联系方式</h3>
+            <p>请扫描二维码查看</p>
+        </div>
+    </div>
+          
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>关于2041寝室</h3>
+                    <p>我们是一个充满活力与创意的六人寝室，在这里共同度过了美好的大学时光。</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#members">成员介绍</a></li>
+                        <li><a href="#gallery">寝室精彩文化</a></li>
+                    </ul>
+                </div>
+         
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <div onclick="openContactPopup()"><i class="fas fa-phone"></i> 点击查看</div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 2041寝室 版权所有 | 设计: 2041 | 开发: 2041</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentIndex = 0;
+            let slideCount = slides.length;
+            let slideInterval;
+            const intervalTime = 5000; // 5秒切换一次
+            
+            // 初始化轮播图
+            function initSlider() {
+                updateSlider();
+                startSlideShow();
+                
+                // 鼠标悬停时暂停自动播放
+                slider.addEventListener('mouseenter', pauseSlideShow);
+                slider.addEventListener('mouseleave', startSlideShow);
+                
+                // 添加按钮事件
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+                
+                // 添加导航点事件
+                dots.forEach(dot => {
+                    dot.addEventListener('click', function() {
+                        currentIndex = parseInt(this.dataset.index);
+                        updateSlider();
+                    });
+                });
+            }
+            
+            // 更新轮播图位置和导航点
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // 更新导航点状态
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // 下一张
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateSlider();
+                resetInterval();
+            }
+            
+            // 上一张
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateSlider();
+                resetInterval();
+            }
+            
+            // 开始自动播放
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+            
+            // 暂停自动播放
+            function pauseSlideShow() {
+                clearInterval(slideInterval);
+            }
+            
+            // 重置定时器
+            function resetInterval() {
+                pauseSlideShow();
+                startSlideShow();
+            }
+            
+            // 触摸滑动支持
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                pauseSlideShow();
+            });
+            
+            slider.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startSlideShow();
+            });
+            
+            function handleSwipe() {
+                const difference = touchStartX - touchEndX;
+                if (difference > 50) {
+                    nextSlide(); // 向左滑动
+                } else if (difference < -50) {
+                    prevSlide(); // 向右滑动
+                }
+            }
+            
+            // 初始化轮播图
+            initSlider();
+        });
+
+        // 图片查看器功能
+        function openImageViewer(imageSrc) {
+            const viewer = document.getElementById('imageViewer');
+            const viewedImage = document.getElementById('viewedImage');
+            
+            viewedImage.src = imageSrc;
+            viewer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 点击查看器背景也可以关闭
+        document.getElementById('imageViewer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageViewer();
+            }
+        });
+
+        // 联系方式弹窗功能
+        function openContactPopup() {
+            const popup = document.getElementById('contactPopup');
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeContactPopup() {
+            const popup = document.getElementById('contactPopup');
+            popup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 点击弹窗背景也可以关闭
+        document.getElementById('contactPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactPopup();
+            }
+        });
+        
+        // 禁止右键菜单和图片拖拽
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // 防止页面缩放
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
