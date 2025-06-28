@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息安全2023级1班毕业纪念</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #f0f2f5;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+        
+        header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .school-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .school-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            margin: 0;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .class-info {
+            margin: 25px 0;
+            font-size: 1.1rem;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .class-info span {
+            padding: 8px 15px;
+            background: rgba(30, 60, 114, 0.1);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .class-info span i {
+            margin-right: 5px;
+            color: #1e3c72;
+        }
+        
+        .photo-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 350px;
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease, filter 0.4s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.05);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 25px 20px 15px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-caption h3 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .photo-caption p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        
+        .special-layout {
+            grid-column: span 2;
+            height: 450px;
+        }
+        
+        .quote-section {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .quote-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 2.5rem;
+            color: rgba(30, 60, 114, 0.3);
+            position: absolute;
+        }
+        
+        .quote::before {
+            top: -20px;
+            left: -15px;
+        }
+        
+        .quote::after {
+            bottom: -40px;
+            right: -15px;
+        }
+        
+        .signature {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .signature::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #1e3c72, transparent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        .graduation-date {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        /* 流星雨效果 */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+                        0 0 0 8px rgba(255, 255, 255, 0.1),
+                        0 0 20px rgba(255, 255, 255, 1);
+            animation: shooting 3s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1), transparent);
+        }
+        
+        @keyframes shooting {
+            0% {
+                transform: translate(0, 0) rotate(215deg);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-300px, 300px) rotate(215deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 毕业彩带效果 */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            opacity: 0;
+            animation: confetti 5s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 气球效果 */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: #ff4081;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: balloon 15s ease-in infinite;
+            z-index: 1;
+        }
+        
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #ff4081;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes balloon {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(50px, -100px);
+            }
+            100% {
+                transform: translate(100px, -200px);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .photo-wall {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-layout {
+                grid-column: span 1;
+                height: 350px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .quote {
+                font-size: 1.4rem;
+            }
+            
+            .title-container {
+                flex-direction: column;
+            }
+            
+            .school-logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="floating-elements">
+        <div class="floating-element" style="width: 100px; height: 100px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; top: 70%; left: 25%; animation-delay: 2s; animation-duration: 20s;"></div>
+        <div class="floating-element" style="width: 80px; height: 80px; top: 40%; left: 70%; animation-delay: 5s;"></div>
+        <div class="floating-element" style="width: 120px; height: 120px; top: 80%; left: 80%; animation-delay: 1s; animation-duration: 25s;"></div>
+    </div>
+    
+    <!-- 流星雨元素 -->
+    <div id="shooting-stars"></div>
+    
+    <!-- 毕业彩带元素 -->
+    <div id="confetti-container"></div>
+    
+    <!-- 气球元素 -->
+    <div id="balloons-container"></div>
+    
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <div class="school-logo">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/8T55OzGTUDQjnTibQs7dbkpBsbEvNurGwmH4Eiccia0WhLuzwwy6lmgVMMHLYECBHWic6hmZqaqiaFhhmeHLpqhSl9Q/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1" alt="校徽">
+                </div>
+                <h1>青春不散场</h1>
+            </div>
+            <div class="subtitle">信息安全2023级1班</div>
+            <div class="class-info">
+                <span><i>🎓</i>入学时间：2023年9月</span>
+                <span><i>📅</i>毕业时间：2026年6月</span>
+                <span><i>👨‍🏫</i>班主任：赵圆圆</span>
+                <span><i>👥</i>班级人数：44人</span>
+            </div>
+        </header>
+        
+        <div class="quote-section">
+            <p class="quote">三年的时光，我们一起学习，一起成长，从陌生到熟悉，从同学到挚友。这段青春岁月，将永远珍藏在我们的记忆里。</p>
+            <p class="signature">——信息安全2023级1班全体同学</p>
+        </div>
+        
+        <div class="photo-wall">
+            <!-- 照片1 - 特殊布局 -->
+            <div class="photo-item special-layout">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="班级集体照">
+                <div class="photo-caption">
+                    <h3>班级全家福</h3>
+                    <p>2025年10月拍摄于学校 | 永远的信息安全2301班</p>
+                </div>
+            </div>
+            
+            <!-- 照片2 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片3 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片4 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片5 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片6 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片7 - 特殊布局 -->
+            <div class="photo-item special-layout">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="毕业典礼">
+                <div class="photo-caption">
+                    <h3>毕业典礼</h3>
+                    <p>2026年6月，我们正式毕业了！青春不散场，梦想正起航</p>
+                </div>
+            </div>
+            
+            <!-- 照片8 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片9 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            
+            <!-- 照片10 -->
+            <div class="photo-item">
+                <img src="https://img.picui.cn/free/2025/06/28/685fb6973e250.png" alt="">
+                <div class="photo-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>信息安全2023级1班 毕业纪念</p>
+            <p>愿我们前程似锦，归来仍是少年</p>
+            <p class="graduation-date">🎓 毕业日期：2026年6月 🎓</p>
+        </footer>
+    </div>
+
+    <!-- 引入粒子效果库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 初始化粒子背景
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // 创建浮动元素
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            const colors = ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.08)', 'rgba(255,255,255,0.05)'];
+            
+            for (let i = 0; i < 10; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                const size = Math.random() * 100 + 50;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 15;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.top = `${posY}%`;
+                element.style.left = `${posX}%`;
+                element.style.animationDelay = `${delay}s`;
+                element.style.animationDuration = `${duration}s`;
+                element.style.background = color;
+                
+                container.appendChild(element);
+            }
+        }
+        
+        // 创建流星雨
+        function createShootingStars() {
+            const container = document.getElementById('shooting-stars');
+            const colors = ['#fff', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+            
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.classList.add('shooting-star');
+                
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 2 + 1;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                star.style.left = `${posX}px`;
+                star.style.top = `${posY}px`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.background = color;
+                star.style.boxShadow = `0 0 0 4px rgba(255, 255, 255, 0.1),
+                                     0 0 0 8px rgba(255, 255, 255, 0.1),
+                                     0 0 20px ${color}`;
+                
+                container.appendChild(star);
+                
+                // 移除流星元素
+                setTimeout(() => {
+                    star.remove();
+                }, duration * 1000);
+            }, 500);
+        }
+        
+        // 创建毕业彩带
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff5722', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                const posX = Math.random() * window.innerWidth;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 5 + 3;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 10 + 5;
+                const shape = Math.random() > 0.5 ? '50%' : '0';
+                
+                confetti.style.left = `${posX}px`;
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.animationDuration = `${duration}s`;
+                confetti.style.background = color;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.borderRadius = shape;
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // 创建气球
+        function createBalloons() {
+            const container = document.getElementById('balloons-container');
+            const colors = ['#ff4081', '#ff5722', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+            
+            for (let i = 0; i < 10; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                
+                const posX = Math.random() * window.innerWidth;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 10 + 10;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 20 + 20;
+                
+                balloon.style.left = `${posX}px`;
+                balloon.style.animationDelay = `${delay}s`;
+                balloon.style.animationDuration = `${duration}s`;
+                balloon.style.background = color;
+                balloon.style.width = `${size}px`;
+                balloon.style.height = `${size * 1.3}px`;
+                
+                container.appendChild(balloon);
+            }
+        }
+        
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            createFloatingElements();
+            createShootingStars();
+            createConfetti();
+            createBalloons();
+            
+            // 添加卡片入场动画
+            const cards = document.querySelectorAll('.photo-item');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
