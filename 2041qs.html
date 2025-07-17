@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -129,48 +130,17 @@
             width: 100%;
         }
         
-        /* 英雄区域 - 轮播图 */
+        /* 英雄区域 */
         .hero {
             height: 80vh;
             min-height: 500px;
             max-height: 800px;
-            position: relative;
-            overflow: hidden;
-            min-width: 320px;
-        }
-        
-        .slider {
-            display: flex;
-            height: 100%;
-            width: 100%;
-            transition: transform 0.5s ease;
-        }
-        
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .slide-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://youke1.picui.cn/s1/2025/07/17/687881e1e1735.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            background: rgba(0, 0, 0, 0.5);
             color: white;
-            padding: 0 20px;
+            min-width: 320px;
         }
         
         .hero-content {
@@ -190,60 +160,6 @@
             font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-        }
-        
-        .slider-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .slider-dot.active {
-            background: white;
-        }
-        
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .slider-btn:hover {
-            background: rgba(0, 0, 0, 0.6);
-        }
-        
-        .prev-btn {
-            left: 20px;
-        }
-        
-        .next-btn {
-            right: 20px;
         }
         
         .btn {
@@ -401,7 +317,6 @@
             color: var(--primary);
             border-radius: 50%;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         
         .social-links a:hover {
@@ -827,12 +742,6 @@
             .contact-popup-content {
                 padding: 1.5rem;
             }
-            
-            .slider-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
         }
         
         @media (max-width: 576px) {
@@ -874,10 +783,6 @@
             .contact-popup-content {
                 padding: 1rem;
             }
-            
-            .slider-nav {
-                bottom: 10px;
-            }
         }
 
         @media (max-width: 375px) {
@@ -913,12 +818,6 @@
             .contact-popup-content h3 {
                 font-size: 1.2rem;
             }
-            
-            .slider-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -945,56 +844,13 @@
         </div>
     </header>
     
-    <!-- 英雄区域 - 轮播图 -->
+    <!-- 英雄区域 -->
     <section class="hero" id="home">
-        <div class="slider">
-            <!-- 轮播图1 -->
-            <div class="slide">
-                <img src="https://img.picui.cn/free/2025/05/24/6831a23adbe40.jpg" alt="寝室照片1">
-                <div class="slide-content">
-                    <div class="hero-content">
-                        <h1>2041 素质寝室</h1>
-                        <p>来自五湖四海的我们，在这里相遇、相知、共同成长，创造属于我们的青春记忆</p>
-                        <a href="#members" class="btn">认识我们</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 轮播图2 -->
-            <div class="slide">
-                <img src="https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg" alt="寝室照片2">
-                <div class="slide-content">
-                    <div class="hero-content">
-                        <h1>2041 素质寝室</h1>
-                        <p>团结友爱，互帮互助，共同进步是我们的寝室文化</p>
-                        <a href="#members" class="btn">认识我们</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 轮播图3 -->
-            <div class="slide">
-                <img src="https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg" alt="寝室照片3">
-                <div class="slide-content">
-                    <div class="hero-content">
-                        <h1>2041 素质寝室</h1>
-                        <p>寝室徽章设计三等奖获得者，展示我们的创意与才华</p>
-                        <a href="#members" class="btn">认识我们</a>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-content">
+            <h1>2041 素质寝室</h1>
+            <p>来自五湖四海的我们，在这里相遇、相知、共同成长，创造属于我们的青春记忆</p>
+            <a href="#members" class="btn">认识我们</a>
         </div>
-        
-        <!-- 轮播图导航点 -->
-        <div class="slider-nav">
-            <div class="slider-dot active" data-index="0"></div>
-            <div class="slider-dot" data-index="1"></div>
-            <div class="slider-dot" data-index="2"></div>
-        </div>
-        
-        <!-- 轮播图按钮 -->
-        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
     </section>
     
     <!-- 关于寝室 -->
@@ -1044,102 +900,102 @@
             <div class="members-grid">
                 <!-- 成员1 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831ac5c4e55c.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831ac5c4e55c.jpg" alt="武少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878845ebde9a.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/6878845ebde9a.jpg" alt="武少">
                     </div>
                     <div class="member-info">
                         <h3>武少</h3>
                         <p class="position">寝室长 / 信息安全</p>
                         <p class="bio">来自安徽</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 成员2 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a7c8655d6.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831a7c8655d6.jpg" alt="杨少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/68788480898d0.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/68788480898d0.jpg" alt="杨少">
                     </div>
                     <div class="member-info">
                         <h3>杨少</h3>
                         <p class="position">无 / 信息安全</p>
                         <p class="bio">来自安徽</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 成员3 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831e25795fad.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831e25795fad.jpg" alt="夏少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/687884a865c23.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/687884a865c23.jpg" alt="夏少">
                     </div>
                     <div class="member-info">
                         <h3>夏少</h3>
                         <p class="position">无 / 信息安全</p>
                         <p class="bio">来自安徽</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 成员4 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a8100df8d.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831a8100df8d.jpg" alt="张少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/687883e1b9457.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/687883e1b9457.jpg" alt="张少">
                     </div>
                     <div class="member-info">
                         <h3>张少</h3>
                         <p class="position">无 / 信息安全</p>
                         <p class="bio">来自安徽</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 成员5 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a824d10ae.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831a824d10ae.jpg" alt="燕少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878827ea6034.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/6878827ea6034.jpg" alt="燕少">
                     </div>
                     <div class="member-info">
                         <h3>燕少</h3>
                         <p class="position">无 / 信息安全</p>
                         <p class="bio">来自安徽</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 成员6 -->
                 <div class="member-card">
-                    <div class="member-img" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a5a0b60b4.jpg')">
-                        <img src="https://img.picui.cn/free/2025/05/24/6831a5a0b60b4.jpg" alt="许少">
+                    <div class="member-img" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/687884c1a87f0.jpg')">
+                        <img src="https://youke1.picui.cn/s1/2025/07/17/687884c1a87f0.jpg" alt="许少">
                     </div>
                     <div class="member-info">
                         <h3>许少</h3>
                         <p class="position">无 / 信息安全</p>
                         <p class="bio">来自太平洋</p>
                         <div class="social-links">
-                            <a onclick="openContactPopup()"><i class="fab fa-weixin"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-qq"></i></a>
-                            <a onclick="openContactPopup()"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-qq"></i></a>
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1156,24 +1012,38 @@
             </div>
             
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg')">
-                    <img src="https://img.picui.cn/free/2025/05/24/6831aa7bda943.jpg" alt="校园风采">
+                <div class="gallery-item" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878839e7ade8.jpg')">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878839e7ade8.jpg" alt="校园风采">
                     <div class="gallery-overlay">
                         <h3>校园美景</h3>
                     </div>
                 </div>
                 
-                 <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg')">
-                    <img src="https://img.picui.cn/free/2025/05/24/6831a8f5a706c.jpg" alt="寝室徽章">
+                 <div class="gallery-item" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg')">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg" alt="寝室徽章">
                     <div class="gallery-overlay">
                         <h3>寝室徽章</h3>
                     </div>
                 </div>
                 
-                <div class="gallery-item" onclick="openImageViewer('https://img.picui.cn/free/2025/05/24/6831a94e6461c.jpg')">
-                    <img src="https://img.picui.cn/free/2025/05/24/6831a94e6461c.jpg" alt="比赛获奖">
+                <div class="gallery-item" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg')">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg" alt="比赛获奖">
                     <div class="gallery-overlay">
                         <h3>寝室设计</h3>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878851391fbd.jpg')">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878851391fbd.jpg" alt="作品设计">
+                    <div class="gallery-overlay">
+                        <h3>海报设计</h3>
+                    </div>
+                </div>
+
+               <div class="gallery-item" onclick="openImageViewer('https://youke1.picui.cn/s1/2025/07/17/6878852bc8d4f.jpg')">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878852bc8d4f.jpg" alt="冬日雪景">
+                    <div class="gallery-overlay">
+                        <h3>校园雪景</h3>
                     </div>
                 </div>
             </div>
@@ -1212,7 +1082,7 @@
     <div class="contact-popup" id="contactPopup">
         <div class="contact-popup-content">
             <span class="close-popup" onclick="closeContactPopup()">&times;</span>
-            <img src="https://img.picui.cn/free/2025/05/25/68327e81994a6.jpg" alt="联系方式">
+            <img src="https://youke1.picui.cn/s1/2025/07/17/6878856115678.jpg" alt="联系方式">
             <h3>2041寝室联系方式</h3>
             <p>请扫描二维码查看</p>
         </div>
@@ -1250,109 +1120,6 @@
     </footer>
 
     <script>
-        // 轮播图功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            
-            let currentIndex = 0;
-            let slideCount = slides.length;
-            let slideInterval;
-            const intervalTime = 5000; // 5秒切换一次
-            
-            // 初始化轮播图
-            function initSlider() {
-                updateSlider();
-                startSlideShow();
-                
-                // 鼠标悬停时暂停自动播放
-                slider.addEventListener('mouseenter', pauseSlideShow);
-                slider.addEventListener('mouseleave', startSlideShow);
-                
-                // 添加按钮事件
-                prevBtn.addEventListener('click', prevSlide);
-                nextBtn.addEventListener('click', nextSlide);
-                
-                // 添加导航点事件
-                dots.forEach(dot => {
-                    dot.addEventListener('click', function() {
-                        currentIndex = parseInt(this.dataset.index);
-                        updateSlider();
-                    });
-                });
-            }
-            
-            // 更新轮播图位置和导航点
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
-                // 更新导航点状态
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
-            
-            // 下一张
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slideCount;
-                updateSlider();
-                resetInterval();
-            }
-            
-            // 上一张
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-                updateSlider();
-                resetInterval();
-            }
-            
-            // 开始自动播放
-            function startSlideShow() {
-                slideInterval = setInterval(nextSlide, intervalTime);
-            }
-            
-            // 暂停自动播放
-            function pauseSlideShow() {
-                clearInterval(slideInterval);
-            }
-            
-            // 重置定时器
-            function resetInterval() {
-                pauseSlideShow();
-                startSlideShow();
-            }
-            
-            // 触摸滑动支持
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            slider.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-                pauseSlideShow();
-            });
-            
-            slider.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-                startSlideShow();
-            });
-            
-            function handleSwipe() {
-                const difference = touchStartX - touchEndX;
-                if (difference > 50) {
-                    nextSlide(); // 向左滑动
-                } else if (difference < -50) {
-                    prevSlide(); // 向右滑动
-                }
-            }
-            
-            // 初始化轮播图
-            initSlider();
-        });
-
         // 图片查看器功能
         function openImageViewer(imageSrc) {
             const viewer = document.getElementById('imageViewer');
