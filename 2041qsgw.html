@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -29,6 +28,194 @@
             line-height: 1.6;
             min-width: 320px;
             overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* 升级提示弹窗样式 */
+        .upgrade-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .upgrade-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 90%;
+            width: 500px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .upgrade-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .upgrade-content p {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .upgrade-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .upgrade-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .enter-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .details-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .exit-btn {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .upgrade-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* 详情弹窗样式 */
+        .details-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .details-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .details-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 90%;
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .details-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .details-content h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .details-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .details-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .details-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-methods {
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+        
+        .contact-methods h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .close-details {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: var(--dark);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-details:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
         }
         
         .container {
@@ -392,11 +579,12 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
+            cursor: default;
         }
         
         .video-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .video-wrapper {
@@ -742,6 +930,25 @@
             .contact-popup-content {
                 padding: 1.5rem;
             }
+
+            /* 小屏幕下按钮垂直排列 */
+            .upgrade-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .upgrade-btn {
+                width: 100%;
+            }
+
+            .details-content {
+                padding: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -783,6 +990,10 @@
             .contact-popup-content {
                 padding: 1rem;
             }
+
+            .details-content {
+                padding: 1rem;
+            }
         }
 
         @media (max-width: 375px) {
@@ -818,11 +1029,73 @@
             .contact-popup-content h3 {
                 font-size: 1.2rem;
             }
+
+            .details-content h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- 升级提示弹窗 -->
+    <div class="upgrade-modal" id="upgradeModal">
+        <div class="upgrade-content">
+            <h2>网页升级通知</h2>
+            <p>该网页正在升级为新版本网页，请您耐心等待。</p>
+            <p>若您继续访问，请点击"已知晓，进入网页"，若您拒绝访问，点击"退出"按钮，即可完全退出网页。</p>
+            <div class="upgrade-buttons">
+                <button class="upgrade-btn enter-btn" onclick="enterWebsite()">已知晓，进入网页</button>
+                <button class="upgrade-btn details-btn" onclick="showUpdateDetails()">详情</button>
+                <button class="upgrade-btn exit-btn" onclick="exitWebsite()">退出</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 更新详情弹窗 -->
+    <div class="details-modal" id="detailsModal">
+        <span class="close-details" onclick="closeDetailsModal()">&times;</span>
+        <div class="details-content">
+            <h2>网页更新详情</h2>
+            <p>我们正在对网页进行全面升级，以提供更好的用户体验和更多功能。以下是本次更新的主要内容：</p>
+            
+            <h3>主要更新内容</h3>
+            <ul>
+                <li>全新设计的用户界面，更加现代化和直观</li>
+                <li>优化了页面加载速度，提升访问体验</li>
+                <li>新增寝室成员详细介绍页面</li>
+                <li>增加了更多寝室文化展示内容</li>
+                <li>优化了移动端显示效果</li>
+            </ul>
+            
+            <h3>预计完成时间</h3>
+            <p>我们预计将在2025年8月18日前完成所有更新工作。在此期间，网页可能会短暂不可用，请见谅。</p>
+            
+            <h3>更新带来的改进</h3>
+            <ul>
+                <li>更流畅的页面切换效果</li>
+                <li>更丰富的多媒体内容展示</li>
+                <li>更便捷的联系方式</li>
+                <li>更完善的响应式设计</li>
+            </ul>
+            
+            <div class="contact-methods">
+                <h3>联系方式</h3>
+                <p>如有任何问题或建议，请通过以下方式联系我们：</p>
+                <div class="contact-links">
+                    <a href="tencent://message/?uin=123456789&Site=&Menu=yes" class="contact-link" target="_blank">
+                        <i class="fab fa-qq contact-icon"></i>
+                        <span>QQ联系</span>
+                    </a>
+                    <a href="weixin://dl/chat?2041寝室" class="contact-link" target="_blank">
+                        <i class="fab fa-weixin contact-icon"></i>
+                        <span>微信联系</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 导航栏 -->
     <header>
         <div class="school-logo">
@@ -839,6 +1112,7 @@
                     <li><a href="#about">关于我们</a></li>
                     <li><a href="#members">成员介绍</a></li>
                     <li><a href="#gallery">寝室精彩文化</a></li>
+                    <li><a href="#video-section">寝室视频记录</a></li>
                 </ul>
             </nav>
         </div>
@@ -1049,7 +1323,7 @@
             </div>
             
             <!-- 新增的视频部分 -->
-            <div class="video-section">
+            <div class="video-section" id="video-section">
                 <div class="section-title">
                     <h2>寝室视频记录</h2>
                     <p>观看我们的精彩视频片段</p>
@@ -1104,6 +1378,7 @@
                         <li><a href="#about">关于我们</a></li>
                         <li><a href="#members">成员介绍</a></li>
                         <li><a href="#gallery">寝室精彩文化</a></li>
+                        <li><a href="#video-section">寝室视频记录</a></li>
                     </ul>
                 </div>
          
@@ -1120,6 +1395,33 @@
     </footer>
 
     <script>
+        // 升级提示弹窗功能
+        function enterWebsite() {
+            document.getElementById('upgradeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showUpdateDetails() {
+            document.getElementById('detailsModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.remove('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function exitWebsite() {
+            // 这里可以替换为您想要的实际退出行为
+            window.location.href = 'about:blank';
+            window.close();
+        }
+        
+        // 默认显示升级弹窗并禁止滚动
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.overflow = 'hidden';
+        });
+
         // 图片查看器功能
         function openImageViewer(imageSrc) {
             const viewer = document.getElementById('imageViewer');
@@ -1163,6 +1465,13 @@
             }
         });
         
+        // 点击详情弹窗背景也可以关闭
+        document.getElementById('detailsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDetailsModal();
+            }
+        });
+        
         // 禁止右键菜单和图片拖拽
         document.addEventListener('contextmenu', function(e) {
             if (e.target.tagName === 'IMG') {
@@ -1179,6 +1488,26 @@
         // 防止页面缩放
         document.addEventListener('gesturestart', function (e) {
             e.preventDefault();
+        });
+
+        // 禁止复制粘贴
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+        });
+        
+        // 阻止视频链接跳转
+        document.querySelector('.video-container').addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
         });
     </script>
 </body>
