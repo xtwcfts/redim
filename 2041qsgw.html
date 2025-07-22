@@ -1389,92 +1389,185 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 2041 版权所有 | 设计: 2041 | 开发: 2041</p>
-                 <p>设计者: 念安 | 联系方式: 2812274770</p>
-                  <p>地址:安徽省合肥市 | 2025/05/26</p>
+                   <p>&copy; 2025 2041 版权所有 | 设计: 2041 | 开发: 2041</p>
+                   <p>&copy; 设计者: 念安 | 联系方式: 2812274770</p>
+                   <p>&copy; 地址:安徽省合肥市 | 登录IP: <span id="ipAddress">获取中...</span></p>
+                   <p>当前时间: <span id="currentTime">加载中...</span></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 升级提示弹窗功能
-        function enterWebsite() {
-            document.getElementById('upgradeModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+    // 升级提示弹窗功能
+    function enterWebsite() {
+        document.getElementById('upgradeModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showUpdateDetails() {
+        document.getElementById('detailsModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDetailsModal() {
+        document.getElementById('detailsModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    function exitWebsite() {
+        window.location.href = 'about:blank';
+        window.close();
+    }
+
+    // 显示当前IP地址（使用多个备选API）
+    function getIPAddress() {
+        const ipDisplay = document.getElementById('ipAddress');
+        ipDisplay.textContent = '获取中...';
         
-        function showUpdateDetails() {
-            document.getElementById('detailsModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        // 备选API服务列表（按优先级排序）
+        const apiServices = [
+            {
+                url: 'https://api.ipify.org?format=json',
+                parser: data => data.ip
+            },
+            {
+                url: 'https://ipapi.co/json/',
+                parser: data => data.ip
+            },
+            {
+                url: 'https://ipinfo.io/json',
+                parser: data => data.ip
+            },
+            {
+                url: 'https://api.my-ip.io/ip.json',
+                parser: data => data.ip || data.address
+            },
+            {
+                url: 'https://worldtimeapi.org/api/ip',
+                parser: data => data.client_ip
+            }
+        ];
+
+        let currentApiIndex = 0;
         
-        function closeDetailsModal() {
-            document.getElementById('detailsModal').classList.remove('active');
-            document.body.style.overflow = 'hidden';
-        }
+        const tryNextApi = () => {
+            if (currentApiIndex >= apiServices.length) {
+                ipDisplay.textContent = '获取失败 (请检查网络设置)';
+                return;
+            }
+            
+            const currentApi = apiServices[currentApiIndex];
+            ipDisplay.textContent = '获取中...';
+            
+            // 设置超时（5秒）
+            const timeout = setTimeout(() => {
+                currentApiIndex++;
+                tryNextApi();
+            }, 5000);
+            
+            fetch(currentApi.url)
+                .then(response => {
+                    if (!response.ok) throw new Error('API响应错误');
+                    return response.json();
+                })
+                .then(data => {
+                    clearTimeout(timeout);
+                    const ip = currentApi.parser(data);
+                    if (ip) {
+                        ipDisplay.textContent = ip;
+                    } else {
+                        throw new Error('无效的IP格式');
+                    }
+                })
+                .catch(error => {
+                    clearTimeout(timeout);
+                    console.error(`API ${currentApi.url} 失败:`, error);
+                    currentApiIndex++;
+                    tryNextApi();
+                });
+        };
         
-        function exitWebsite() {
-            // 这里可以替换为您想要的实际退出行为
-            window.location.href = 'about:blank';
-            window.close();
-        }
+        tryNextApi();
+    }
+
+    // 显示实时时间（格式：yyyy年mm月dd日 hh时mm分ss秒 星期n）
+    function updateCurrentTime() {
+        const now = new Date();
+        const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+        
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const weekday = weekdays[now.getDay()];
+        
+        const timeString = `${year}年${month}月${day}日 ${hours}时${minutes}分${seconds}秒 星期${weekday}`;
+        document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // 图片查看器功能
+    function openImageViewer(imageSrc) {
+        const viewer = document.getElementById('imageViewer');
+        const viewedImage = document.getElementById('viewedImage');
+        
+        viewedImage.src = imageSrc;
+        viewer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeImageViewer() {
+        const viewer = document.getElementById('imageViewer');
+        viewer.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // 联系方式弹窗功能
+    function openContactPopup() {
+        const popup = document.getElementById('contactPopup');
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeContactPopup() {
+        const popup = document.getElementById('contactPopup');
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取并显示IP地址
+        getIPAddress();
+        
+        // 初始化时间并设置定时器每秒更新
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
         
         // 默认显示升级弹窗并禁止滚动
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.overflow = 'hidden';
-        });
-
-        // 图片查看器功能
-        function openImageViewer(imageSrc) {
-            const viewer = document.getElementById('imageViewer');
-            const viewedImage = document.getElementById('viewedImage');
-            
-            viewedImage.src = imageSrc;
-            viewer.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        document.body.style.overflow = 'hidden';
         
-        function closeImageViewer() {
-            const viewer = document.getElementById('imageViewer');
-            viewer.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // 点击查看器背景也可以关闭
+        // 点击事件监听
         document.getElementById('imageViewer').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeImageViewer();
             }
         });
-
-        // 联系方式弹窗功能
-        function openContactPopup() {
-            const popup = document.getElementById('contactPopup');
-            popup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
         
-        function closeContactPopup() {
-            const popup = document.getElementById('contactPopup');
-            popup.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        
-        // 点击弹窗背景也可以关闭
         document.getElementById('contactPopup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeContactPopup();
             }
         });
         
-        // 点击详情弹窗背景也可以关闭
         document.getElementById('detailsModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeDetailsModal();
             }
         });
         
-        // 禁止右键菜单和图片拖拽
+        // 阻止默认行为
         document.addEventListener('contextmenu', function(e) {
             if (e.target.tagName === 'IMG') {
                 e.preventDefault();
@@ -1487,12 +1580,10 @@
             }
         });
 
-        // 防止页面缩放
-        document.addEventListener('gesturestart', function (e) {
+        document.addEventListener('gesturestart', function(e) {
             e.preventDefault();
         });
 
-        // 禁止复制粘贴
         document.addEventListener('copy', function(e) {
             e.preventDefault();
         });
@@ -1505,12 +1596,12 @@
             e.preventDefault();
         });
         
-        // 阻止视频链接跳转
         document.querySelector('.video-container').addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             return false;
         });
-    </script>
+    });
+</script>
 </body>
 </html>
