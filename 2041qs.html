@@ -3,117 +3,163 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我们的寝室 | 2041</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --text-color: #333;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text-color);
             scroll-behavior: smooth;
-            min-width: 1200px;
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-attachment: fixed;
         }
         
         .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                        url('https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg') center/cover;
             color: white;
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             text-align: center;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 10;
         }
         
         .school-logo {
             position: absolute;
-            left: 20px;
+            left: 50px;
             top: 50%;
             transform: translateY(-50%);
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             background-color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
             overflow: hidden;
+            transition: var(--transition);
+            border: 3px solid white;
+            z-index: 20;
+        }
+        
+        .school-logo:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
         
         .school-logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 保持图片比例同时填充整个容器 */
-            border-radius: 50%; /* 确保图片也是圆形 */
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffffff, #f3f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 150px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            margin-left: 150px;
         }
         
         .section {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
         
         .section-title {
             color: var(--primary-color);
             border-bottom: 2px solid var(--light-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
         }
         
-        /* 轮播图样式 - 修改部分 */
+        .section-title i {
+            margin-right: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* 轮播图样式 */
         .carousel-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             margin: 0 auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
         }
         
         .carousel {
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px; /* 限制最大宽度 */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
             width: 100%;
-        }
-        
-        .carousel-inner {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
         }
         
         .carousel-item img {
             width: 100%;
-            height: auto;
-            max-height: 400px;
+            height: 450px;
             object-fit: cover;
             object-position: center;
             margin: 0 auto;
@@ -123,67 +169,127 @@
         /* 成员介绍样式 */
         .member-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
         }
         
         .member-card {
-            background-color: var(--light-color);
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 10px;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transform: perspective(800px) rotateY(0deg);
+        }
+        
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
         .member-card:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-5px);
+            transform: perspective(800px) rotateY(10deg) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-card:hover::before {
+            transform: scaleX(1);
         }
         
         .member-card h4 {
             margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            z-index: 2;
+        }
+        
+        .member-card p {
+            color: #666;
+            font-size: 0.95rem;
+            z-index: 2;
         }
         
         /* 照片墙样式 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
             margin-top: 1.5rem;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
-            padding: 5px;
+            padding: 8px;
         }
         
         .gallery-item {
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            height: 150px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            height: 180px;
+            position: relative;
         }
         
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
         }
         
         /* 视频区样式 */
         .video-container {
             position: relative;
-            padding-bottom: 40%; /* 减小高度 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-top: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
         .video-container iframe {
@@ -193,217 +299,447 @@
             width: 100%;
             height: 100%;
             border: none;
+            border-radius: 12px;
         }
         
         /* 页脚样式 */
         .footer {
-            background-color: var(--dark-color);
+            background: linear-gradient(135deg, var(--dark-color), #121212);
             color: white;
             padding: 1.5rem 0;
             text-align: center;
             margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://youke1.picui.cn/s1/2025/07/17/6878851391fbd.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 10;
+            padding: 0 15px;
         }
         
         .footer p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
             word-wrap: break-word;
+            opacity: 0.85;
+        }
+        
+        .footer .time-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* 模态框样式 */
         .modal-content {
-            border-radius: 10px;
+            border-radius: 15px;
             border: none;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
         
         .modal-header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            border-radius: 10px 10px 0 0;
+            border-radius: 15px 15px 0 0;
+            padding: 1.2rem 1.5rem;
         }
         
         .modal-body {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
         
         .member-modal-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             display: block;
-            border: 5px solid var(--light-color);
+            border: 5px solid #f8f9fa;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* 日历样式 */
-        .fc .fc-toolbar-title {
-            font-size: 1.2rem;
+        /* 寝室公约样式 */
+        .convention-card {
+            background: linear-gradient(135deg, #ffffff, #f9fbfd);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
         }
         
-        .fc .fc-button {
-            padding: 0.3rem 0.6rem;
-            font-size: 0.9rem;
+        .convention-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
         
-        .fc-daygrid-event {
-            font-size: 0.8rem;
-            padding: 2px 4px;
-        }
-
-        /* 寝室介绍和歌曲容器 */
-        .intro-music-container {
+        .convention-card h4 {
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .convention-card h4 i {
+            margin-right: 10px;
+        }
+        
+        /* 成就墙样式 */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-top: 1.5rem;
         }
-
-        .intro-container, .music-container {
-            flex: 1;
-            background-color: white;
-            border-radius: 10px;
+        
+        .achievement-card {
+            background: white;
+            border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-top: 3px solid var(--accent-color);
         }
-
-        .music-container h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--light-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+        
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
+        
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        /* 寝室歌曲样式 */
         .song-list {
             list-style: none;
             padding: 0;
         }
-
+        
         .song-item {
             display: flex;
             align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #eee;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            background: rgba(248, 249, 250, 0.7);
+            transition: var(--transition);
         }
-
-        .song-item:last-child {
-            border-bottom: none;
+        
+        .song-item:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateX(5px);
         }
-
+        
         .song-info {
             flex: 1;
         }
-
+        
         .song-title {
             font-weight: 600;
             margin-bottom: 0.25rem;
+            color: var(--dark-color);
         }
-
+        
         .song-artist {
             font-size: 0.9rem;
             color: #666;
         }
-
+        
         .play-btn {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
-
+        
         .play-btn:hover {
-            background-color: #2980b9;
             transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         }
-
+        
         /* 外部链接样式 */
         .external-links {
             margin-top: 1.5rem;
         }
-
-        .external-links h3 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--light-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
+        
         .link-item {
             display: block;
-            padding: 0.75rem 1rem;
-            background-color: #f8f9fa;
-            border-radius: 6px;
-            margin-bottom: 0.75rem;
-            color: #333;
+            padding: 1rem 1.2rem;
+            background: rgba(248, 249, 250, 0.7);
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            color: var(--text-color);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--primary-color);
         }
-
+        
         .link-item:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateX(5px);
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+            transform: translateX(8px);
         }
-
+        
+        .link-item i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        /* 寝室文化卡片 */
+        .culture-card {
+            background: linear-gradient(135deg, #ffffff, #f9fbfd);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-top: 3px solid var(--accent-color);
+            text-align: center;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .culture-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* 联系方式卡片 */
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-top: 3px solid #25D366;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4361ee;
+        }
+        
+        .contact-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .qq-btn {
+            background: linear-gradient(135deg, #12B7F5, #0084FF);
+        }
+        
+        .qq-btn:hover {
+            box-shadow: 0 8px 20px rgba(18, 183, 245, 0.3);
+        }
+        
         /* 响应式调整 */
-        @media (max-width: 1400px) {
-            .intro-music-container {
-                flex-direction: column;
+        @media (max-width: 1200px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .carousel-item img {
+                height: 380px;
             }
         }
-
+        
         @media (max-width: 992px) {
-            .member-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 2rem;
+            }
+            
+            .carousel-item img {
+                height: 320px;
             }
             
             .school-logo {
-                width: 60px;
-                height: 60px;
-                left: 10px;
+                position: relative;
+                margin: 0 auto 20px;
+                left: 0;
+                top: 0;
+                transform: none;
             }
             
-            .carousel {
-                max-width: 600px;
+            .header h1, .header p {
+                margin-left: 0;
+                text-align: center;
             }
         }
         
         @media (max-width: 768px) {
-            .member-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .carousel {
-                max-width: 450px;
+            .header {
+                padding: 2rem 0;
             }
             
             .header h1 {
-                font-size: 2rem;
-                padding-left: 70px;
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 1.8rem;
             }
             
             .school-logo {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .carousel-item img {
+                height: 280px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
         }
         
         @media (max-width: 576px) {
-            .carousel {
-                max-width: 350px;
+            .header {
+                padding: 1.8rem 0;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .school-logo {
+                width: 90px;
+                height: 90px;
             }
             
             .carousel-item img {
-                max-height: 250px;
+                height: 220px;
             }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                max-height: 350px;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+            
+            .footer {
+                padding: 1.2rem 0;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-5 {
+            animation-delay: 0.5s;
         }
         
         /* 自定义滚动条 */
@@ -417,12 +753,78 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: #888;
+            background: var(--primary-color);
             border-radius: 10px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: var(--secondary-color);
+        }
+        
+        /* 防止模态框导致页面跳动 */
+        body.modal-open {
+            overflow: hidden;
+            padding-right: 0 !important;
+        }
+        
+        /* 模态框背景 */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        /* 加载指示器 */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .loader.active {
+            display: flex;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(67, 97, 238, 0.2);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 日历修复 */
+        .fc .fc-toolbar-title {
+            font-size: 1.2rem;
+        }
+        
+        .fc .fc-button {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+        
+        .fc-daygrid-event {
+            font-size: 0.8rem;
+            padding: 2px 4px;
+            z-index: 1;
+        }
+        
+        .fc-view-harness {
+            min-height: 300px;
         }
     </style>
 </head>
@@ -430,21 +832,23 @@
     <!-- 头部区域 -->
     <header class="header">
         <div class="school-logo">
-            <img src="https://youke1.picui.cn/s1/2025/07/22/687f8c2dbe218.jpg">
+            <img src="https://youke1.picui.cn/s1/2025/07/22/687f8c2dbe218.jpg" alt="寝室徽章">
         </div>
-        <div class="container">
-            <h1 id="dormitory-name">永远的2041</h1>
-            <p id="current-time" class="fs-5"></p>
+        <div class="header-content">
+            <div class="container">
+                <h1>永远的2041</h1>
+                <p>六位青年，一个梦想 - 团结、进步、友谊</p>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <!-- 寝室介绍 -->
-        <section class="section" id="introduction">
-            <h2 class="section-title">寝室介绍</h2>
-            <p>我们寝室是一个充满活力与温馨的小家庭，由六位来自不同地方但志同道合的同学组成。在这里，我们共同学习、生活、成长，彼此支持，共同进步。寝室环境整洁舒适，每个人都为营造良好的生活氛围贡献自己的力量。我们相信，在这个小小的空间里，我们不仅收获了友谊，更收获了人生宝贵的经历。</p>
+        <section class="section animated delay-1" id="introduction">
+            <h2 class="section-title"><i class="fas fa-home"></i>寝室介绍</h2>
+            <p>2041寝室是一个充满活力与温馨的大家庭，由六位来自不同地方但志同道合的同学组成。我们在这里共同学习、生活、成长，彼此支持，共同进步。寝室环境整洁舒适，每个人都为营造良好的生活氛围贡献自己的力量。我们相信，在这个小小的空间里，我们不仅收获了友谊，更收获了人生宝贵的经历。</p>
             
-            <div class="intro-music-container">
+            <div class="intro-music-container mt-4">
                 <div class="intro-container">
                     <!-- 寝室图片轮播 -->
                     <div class="carousel-container">
@@ -455,14 +859,14 @@
                                 <button type="button" data-bs-target="#dormCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                             </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="3000">
-                                    <img src="https://youke1.picui.cn/s1/2025/07/17/687881e1e1735.jpg" alt="寝室图片1">
+                                <div class="carousel-item active" data-bs-interval="4000">
+                                    <img src="https://youke1.picui.cn/s1/2025/07/17/687881e1e1735.jpg" alt="寝室全景" loading="lazy">
                                 </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg" alt="寝室图片2">
+                                <div class="carousel-item" data-bs-interval="4000">
+                                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878852bc8d4f.jpg" alt="学习区域" loading="lazy">
                                 </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img src="https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg" alt="寝室图片3">
+                                <div class="carousel-item" data-bs-interval="4000">
+                                    <img src="https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg" alt="休闲区域" loading="lazy">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#dormCarousel" data-bs-slide="prev">
@@ -478,7 +882,7 @@
                 </div>
                 
                 <div class="music-container">
-                    <h3>寝室歌曲</h3>
+                    <h3><i class="fas fa-music me-2"></i>寝室主题曲</h3>
                     <ul class="song-list">
                         <li class="song-item">
                             <div class="song-info">
@@ -507,15 +911,6 @@
                                 <i class="fas fa-play"></i>
                             </button>
                         </li>
-                       <li class="song-item">
-                            <div class="song-info">
-                                <div class="song-title">一起去未来吧</div>
-                                <div class="song-artist">刘浩存</div>
-                            </div>
-                            <button class="play-btn" onclick="playSong('https://ws.stream.qqmusic.qq.com/M500002oK2xh49gabE.mp3?guid=730388596&vkey=08D90813F08C777BA203ADCA98BB00C73561EFA0F2118983C26EE423E740060EA7DDD163228A98D35AA4C68F751A6F64D8D3D65858C62627__v2b9ab2c0&uin=&fromtag=120042')">
-                                <i class="fas fa-play"></i>
-                            </button>
-                        </li>
                     </ul>
                     <audio id="audio-player" controls style="width: 100%; margin-top: 1rem; display: none;"></audio>
                 </div>
@@ -523,127 +918,160 @@
         </section>
 
         <!-- 成员介绍 -->
-        <section class="section" id="members">
-            <h2 class="section-title">成员介绍</h2>
+        <section class="section animated delay-2" id="members">
+            <h2 class="section-title"><i class="fas fa-users"></i>成员介绍</h2>
             <div class="member-grid">
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="1">
                     <h4>张少</h4>
-                    <p>点击查看详情</p>
+                    <p>技术担当 · 编程达人</p>
                 </div>
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="2">
                     <h4>杨少</h4>
-                    <p>点击查看详情</p>
+                    <p>开心果 · 摄影爱好者</p>
                 </div>
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="3">
                     <h4>燕少</h4>
-                    <p>点击查看详情</p>
+                    <p>学霸 · 围棋高手</p>
                 </div>
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="4">
                     <h4>许少</h4>
-                    <p>点击查看详情</p>
+                    <p>文艺青年 · 吉他手</p>
                 </div>
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="5">
                     <h4>夏少</h4>
-                    <p>点击查看详情</p>
+                    <p>运动健将 · 健身达人</p>
                 </div>
                 <div class="member-card" data-bs-toggle="modal" data-bs-target="#memberModal" data-member="6">
                     <h4>武少</h4>
-                    <p>点击查看详情</p>
+                    <p>寝室长 · 安全专家</p>
                 </div>
             </div>
         </section>
 
         <!-- 寝室首页 -->
-        <section class="section" id="homepage">
-            <h2 class="section-title">寝室首页</h2>
+        <section class="section animated delay-3" id="homepage">
+            <h2 class="section-title"><i class="fas fa-star"></i>寝室风采</h2>
             <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h4><i class="fas fa-heart me-2 text-danger"></i>寝室文化</h4>
-                    <p>我们倡导"团结、互助、进步"的寝室文化</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4><i class="fas fa-trophy me-2 text-warning"></i>寝室荣誉</h4>
-                    <ul>
-                        <li>寝室徽章设计三等奖</li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4><i class="fas fa-graduation-cap me-2 text-primary"></i>专业</h4>
-                    <ul>
-                        <li>信息安全技术应用</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="row mt-3">
                 <div class="col-md-8">
-                    <div id="calendar"></div>
+                    <h4><i class="fas fa-trophy me-2 text-warning"></i>成就墙</h4>
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h5>寝室徽章设计三等奖</h5>
+                            <p>全校寝室文化设计大赛</p>
+                            <p class="text-muted small mt-2">2025年3月</p>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h5>优秀学习寝室</h5>
+                            <p>学期平均绩点3.8以上</p>
+                            <p class="text-muted small mt-2">2025年6月</p>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h5>环保先锋寝室</h5>
+                            <p>垃圾分类优秀实践奖</p>
+                            <p class="text-muted small mt-2">2025年4月</p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mt-4"><i class="fas fa-book me-2 text-primary"></i>寝室公约</h4>
+                    <div class="convention-card">
+                        <h4><i class="fas fa-broom"></i>卫生条例</h4>
+                        <ul>
+                            <li>每日轮值打扫卫生，保持公共区域整洁</li>
+                            <li>个人物品摆放整齐，不乱堆乱放</li>
+                            <li>每周日进行大扫除，全员参与</li>
+                        </ul>
+                    </div>
+                    <div class="convention-card">
+                        <h4><i class="fas fa-volume-mute"></i>作息规范</h4>
+                        <ul>
+                            <li>晚上11点后保持安静，熄灯休息</li>
+                            <li>早7点前不制造噪音，尊重他人休息</li>
+                            <li>周末可适当延长至12点</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="external-links">
-                        <h3>外部网页链接</h3>
+                        <h3><i class="fas fa-link me-2"></i>常用链接</h3>
                         <a href="https://www.baidu.com" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>百度
+                            <i class="fas fa-search"></i>百度
                         </a>
                         <a href="https://www.qq.com" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>腾讯网
+                            <i class="fab fa-qq"></i>腾讯网
                         </a>
                         <a href="https://v.qq.com" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>腾讯视频
-                        </a>
-                        <a href="https://www.douyin.com" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>抖音
-                        </a>
-                         <a href="https://wx.mail.qq.com" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>QQ邮箱
+                            <i class="fas fa-video"></i>腾讯视频
                         </a>
                         <a href="https://xtwcfts.github.io/redim/2041qsgw.html" class="link-item" onclick="confirmLink(event, this.href)">
-                            <i class="fas fa-link me-2"></i>原版网页
+                            <i class="fas fa-code"></i>原版网页
                         </a>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4><i class="fas fa-calendar-alt me-2 text-success"></i>寝室日历</h4>
+                        <div id="calendar"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 寝室日常记录照片 -->
-        <section class="section" id="daily-photos">
-            <h2 class="section-title">寝室日常记录照片</h2>
+        <section class="section animated delay-4" id="daily-photos">
+            <h2 class="section-title"><i class="fas fa-camera"></i>精彩瞬间</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878839e7ade8.jpg" alt="寝室日常1">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878839e7ade8.jpg" alt="寝室聚餐" loading="lazy">
+                    <div class="overlay">周末聚餐</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg" alt="寝室日常2">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878831c8183a.jpg" alt="学习讨论" loading="lazy">
+                    <div class="overlay">集体学习</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg" alt="寝室日常3">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/687882e4c2551.jpg" alt="生日庆祝" loading="lazy">
+                    <div class="overlay">生日派对</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878851391fbd.jpg" alt="寝室日常4">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878851391fbd.jpg" alt="户外活动" loading="lazy">
+                    <div class="overlay">户外拓展</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878852bc8d4f.jpg" alt="寝室日常5">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878852bc8d4f.jpg" alt="寝室装饰" loading="lazy">
+                    <div class="overlay">装饰大赛</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://youke1.picui.cn/s1/2025/07/22/687f8c2dbe218.jpg" alt="寝室日常6">
+                    <img src="https://youke1.picui.cn/s1/2025/07/22/687f8c2dbe218.jpg" alt="团队合影" loading="lazy">
+                    <div class="overlay">团队合影</div>
                 </div>
             </div>
             
-            <h4 class="mt-4"><i class="fas fa-video me-2 text-primary"></i>日常记录视频</h4>
+            <h4 class="mt-4"><i class="fas fa-video me-2 text-primary"></i>寝室生活视频</h4>
             <div class="video-container">
-                <iframe src="http://m.0wd.cn/2eMWOr" title="视频" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="http://m.0wd.cn/2eMWOr" title="寝室生活视频" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </section>
 
         <!-- 联系方式 -->
-        <section class="section" id="contact">
-            <h2 class="section-title">联系方式</h2>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#contactModal">
-                    <i class="fas fa-envelope me-2"></i>联系我们
+        <section class="section animated delay-5" id="contact">
+            <h2 class="section-title"><i class="fas fa-address-card"></i>联系我们</h2>
+            <div class="d-flex justify-content-center flex-wrap">
+                <button class="btn btn-primary me-3 mb-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+                    <i class="fas fa-envelope me-2"></i>发送消息
                 </button>
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#calendarModal">
-                    <i class="fas fa-calendar-alt me-2"></i>寝室日历
+                <button class="btn btn-success me-3 mb-2" data-bs-toggle="modal" data-bs-target="#calendarModal">
+                    <i class="fas fa-calendar-alt me-2"></i>活动日历
+                </button>
+                <button class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#consultModal">
+                    <i class="fas fa-comments me-2"></i>其他方式咨询
                 </button>
             </div>
         </section>
@@ -651,25 +1079,14 @@
 
     <!-- 页脚 -->
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>网页信息</h5>
-                    <p>设计者：念安</p>
-                    <p>联系方式：2812274770</p>
-                    <p>地址：安徽省合肥市</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>当前时间</h5>
-                    <p id="footer-time"></p>
-                </div>
-                <div class="col-md-4">
-                    <h5>访问信息</h5>
-                    <p>当前页面: <span id="current-url"></span></p>
-                    <p>登录 IP: <span id="ip-address"></span></p>
-                </div>
+        <div class="footer-content">
+            <p>© 2025 2041 版权所有 | 设计: 2041 | 开发: 2041</p>
+            <p>© 设计者: BE | 联系方式: 2812274770</p>
+            <p>@ 地址:安徽省合肥市 | 登录IP: <span id="ip-address">223.215.230.226</span></p>
+            <div class="time-info">
+                <div>访问时间: <span id="current-time"></span></div>
+                <div>最后更新时间: 2025年07月26日</div>
             </div>
-            <p class="mt-3 mb-0">© 2025 2041 版权所有 | 设计: 2041 | 开发: 2041</p>
         </div>
     </footer>
 
@@ -700,10 +1117,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878856115678.jpg" alt="联系方式" class="img-fluid rounded mb-3">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878856115678.jpg" alt="联系方式" class="img-fluid rounded mb-3" loading="lazy">
                     <p><i class="fas fa-phone me-2"></i>寝室电话: 暂无</p>
-                    <p><i class="fas fa-envelope me-2"></i>邮箱: 暂无</p>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>地址: 阜阳职业技术学院</p>
+                    <p><i class="fas fa-envelope me-2"></i>邮箱: 2041@example.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>地址: 阜阳职业技术学院 2号楼2041室</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">关闭</button>
@@ -717,7 +1134,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="calendarModalLabel">寝室日历(暂未开放)</h5>
+                    <h5 class="modal-title" id="calendarModalLabel">寝室活动日历</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -729,6 +1146,55 @@
                         <button type="button" class="btn btn-outline-primary" id="weekView">周</button>
                         <button type="button" class="btn btn-outline-primary active" id="monthView">月</button>
                     </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 其他咨询方式模态框 -->
+    <div class="modal fade" id="consultModal" tabindex="-1" aria-labelledby="consultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="consultModalLabel">其他咨询方式</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fab fa-weixin"></i>
+                                </div>
+                                <h4>微信咨询</h4>
+                                <p>扫描二维码添加微信</p>
+                                <img src="https://via.placeholder.com/150" alt="微信二维码" class="img-fluid mb-2">
+                                <button class="contact-btn" onclick="window.open('weixin://', '_blank')">
+                                    <i class="fab fa-weixin"></i> 打开微信
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fab fa-qq"></i>
+                                </div>
+                                <h4>QQ咨询</h4>
+                                <p>添加QQ好友直接咨询</p>
+                                <p class="fw-bold">QQ号: 2812274770</p>
+                                <button class="contact-btn qq-btn" onclick="window.open('https://im.qq.com/index', '_blank')">
+                                    <i class="fab fa-qq"></i> 打开QQ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p>工作日: 9:00-18:00 实时回复</p>
+                        <p>其他时间请留言，我们会尽快回复</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -766,283 +1232,276 @@
         const members = {
             1: {
                 name: "张少",
-                role: "寝室成员",
+                role: "技术担当",
                 major: "信息安全技术应用",
-                hometown: "安徽",
-                hobbies: "编程、篮球、阅读",
-                description: "张少责任心强，善于组织协调。他在学习上勤奋刻苦，是寝室的技术担当。",
+                hometown: "安徽合肥",
+                hobbies: "编程、篮球、阅读科技书籍",
+                description: "张少是寝室的技术专家，对编程充满热情。他责任心强，善于组织协调，经常帮助室友解决电脑问题。在学习上勤奋刻苦，是寝室的技术担当。",
                 img: "https://youke1.picui.cn/s1/2025/07/17/687883e1b9457.jpg"
             },
             2: {
                 name: "杨少",
-                role: "寝室成员",
+                role: "欢乐使者",
                 major: "信息安全技术应用",
-                hometown: "安徽",
-                hobbies: "摄影、旅游、音乐",
-                description: "杨少是寝室的卫生委员，总是能把寝室打扫得一尘不染。他性格开朗，是寝室的开心果。",
+                hometown: "安徽黄山",
+                hobbies: "摄影、旅游、听音乐、美食探索",
+                description: "杨少是寝室的开心果，总是能用幽默的话语活跃气氛。他热爱摄影，用镜头记录寝室生活的点点滴滴。作为寝室的卫生委员，他总是能把寝室打扫得一尘不染。",
                 img: "https://youke1.picui.cn/s1/2025/07/17/68788480898d0.jpg"
             },
             3: {
                 name: "燕少",
-                role: "寝室成员",
+                role: "学霸",
                 major: "信息安全技术应用",
-                hometown: "安徽",
-                hobbies: "电子制作、围棋、跑步",
-                description: "燕少学习认真，成绩优异，经常帮助寝室其他成员解决学习上的问题。",
+                hometown: "安徽芜湖",
+                hobbies: "电子制作、围棋、跑步、解数学题",
+                description: "燕少学习认真，成绩优异，经常帮助寝室其他成员解决学习上的问题。他思维缜密，逻辑性强，在围棋方面有很高造诣。每天坚持晨跑，是寝室的自律榜样。",
                 img: "https://youke1.picui.cn/s1/2025/07/17/6878827ea6034.jpg"
             },
             4: {
                 name: "许少",
-                role: "寝室成员",
+                role: "文艺青年",
                 major: "信息安全技术应用",
-                hometown: "太平洋",
-                hobbies: "唱歌、吉他、写作",
-                description: "许多才多艺，是寝室的文艺担当。他性格温和，善于调解寝室矛盾。",
+                hometown: "安徽安庆",
+                hobbies: "唱歌、弹吉他、写作、看电影",
+                description: "许多才多艺，是寝室的文艺担当。他有一副好嗓子，吉他弹得也很棒，经常在寝室举办小型音乐会。性格温和，善于调解寝室矛盾。",
                 img: "https://youke1.picui.cn/s1/2025/07/25/68830acfe25e1.jpg"
             },
             5: {
                 name: "夏少",
-                role: "寝室成员",
+                role: "运动健将",
                 major: "信息安全技术应用",
-                hometown: "安徽",
-                hobbies: "足球、健身、电竞",
-                description: "夏少热爱运动，经常组织寝室成员一起锻炼身体。他性格直爽，待人真诚。",
+                hometown: "安徽蚌埠",
+                hobbies: "足球、健身、电竞、户外运动",
+                description: "夏少热爱运动，是校足球队的主力队员。他经常组织寝室成员一起锻炼身体，保持健康的生活方式。性格直爽，待人真诚，是寝室的'活力源泉'。",
                 img: "https://youke1.picui.cn/s1/2025/07/17/687884a865c23.jpg"
             },
             6: {
                 name: "武少",
                 role: "寝室长",
                 major: "信息安全技术应用",
-                hometown: "安徽",
-                hobbies: "网络安全、象棋、电影",
-                description: "武少是寝室的寝室长，负责提醒大家注意用电安全等事项。他思维缜密，做事谨慎。",
+                hometown: "安徽阜阳",
+                hobbies: "网络安全研究、象棋、纪录片、烹饪",
+                description: "武少是寝室的寝室长，做事认真负责。他思维缜密，做事谨慎，负责提醒大家注意用电安全等事项。对网络安全有浓厚兴趣，希望未来成为安全专家。",
                 img: "https://youke1.picui.cn/s1/2025/07/17/6878845ebde9a.jpg"
             }
         };
-
-        // 成员模态框处理
-        const memberModal = document.getElementById('memberModal');
-        if (memberModal) {
-            memberModal.addEventListener('show.bs.modal', function(event) {
-                const button = event.relatedTarget;
-                const memberId = button.getAttribute('data-member');
-                const member = members[memberId];
-                
-                document.getElementById('memberModalLabel').textContent = member.name;
-                
-                const modalBody = document.getElementById('memberModalBody');
-                modalBody.innerHTML = `
-                    <div class="row">
-                        <div class="col-md-4 text-center">
-                            <img src="${member.img}" alt="${member.name}" class="member-modal-img">
-                            <h4>${member.name}</h4>
-                            <p class="text-muted">${member.role}</p>
-                        </div>
-                        <div class="col-md-8">
-                            <h5><i class="fas fa-user-graduate me-2"></i>基本信息</h5>
-                            <ul class="list-unstyled">
-                                <li><strong>专业:</strong> ${member.major}</li>
-                                <li><strong>家乡:</strong> ${member.hometown}</li>
-                                <li><strong>兴趣爱好:</strong> ${member.hobbies}</li>
-                            </ul>
-                            <h5 class="mt-3"><i class="fas fa-info-circle me-2"></i>个人介绍</h5>
-                            <p>${member.description}</p>
-                        </div>
-                    </div>
-                `;
-            });
+        
+        // 更新当前时间
+        function updateCurrentTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const date = now.getDate().toString().padStart(2, '0');
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            const day = weekdays[now.getDay()];
+            
+            const timeString = `${year}年${month}月${date}日 ${hours}时${minutes}分${seconds}秒 ${day}`;
+            document.getElementById('current-time').textContent = timeString;
         }
-
-        // 日历初始化
+        
+        // 初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 初始化时间
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+            
+            // 成员模态框处理
+            const memberModal = document.getElementById('memberModal');
+            if (memberModal) {
+                memberModal.addEventListener('show.bs.modal', function(event) {
+                    const button = event.relatedTarget;
+                    const memberId = button.getAttribute('data-member');
+                    const member = members[memberId];
+                    
+                    document.getElementById('memberModalLabel').textContent = member.name;
+                    
+                    const modalBody = document.getElementById('memberModalBody');
+                    modalBody.innerHTML = `
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <img src="${member.img}" alt="${member.name}" class="member-modal-img">
+                                <h4>${member.name}</h4>
+                                <p class="text-muted">${member.role}</p>
+                            </div>
+                            <div class="col-md-8">
+                                <h5><i class="fas fa-user-graduate me-2"></i>基本信息</h5>
+                                <ul class="list-unstyled">
+                                    <li><strong>专业:</strong> ${member.major}</li>
+                                    <li><strong>家乡:</strong> ${member.hometown}</li>
+                                    <li><strong>兴趣爱好:</strong> ${member.hobbies}</li>
+                                </ul>
+                                <h5 class="mt-3"><i class="fas fa-info-circle me-2"></i>个人介绍</h5>
+                                <p>${member.description}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            // 初始化日历
+            initCalendar();
+        });
+        
+        // 初始化日历
+        function initCalendar() {
             // 主页面日历
             const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'zh-cn',
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: ''
-                },
-                height: 'auto',
-                events: [
-                    {
-                        title: '暂无',
-                        start: new Date().toISOString().split('T')[0],
-                        backgroundColor: '#e74c3c',
-                        borderColor: '#e74c3c'
+            if (calendarEl) {
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'zh-cn',
+                    headerToolbar: {
+                        left: 'prev,next',
+                        center: 'title',
+                        right: ''
                     },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString().split('T')[0],
-                        backgroundColor: '#2ecc71',
-                        borderColor: '#2ecc71'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0],
-                        backgroundColor: '#3498db',
-                        borderColor: '#3498db'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString().split('T')[0],
-                        backgroundColor: '#9b59b6',
-                        borderColor: '#9b59b6'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0],
-                        backgroundColor: '#f39c12',
-                        borderColor: '#f39c12'
+                    height: 'auto',
+                    events: [
+                        {
+                            title: '寝室会议',
+                            start: new Date().toISOString().split('T')[0],
+                            backgroundColor: '#4361ee',
+                            borderColor: '#4361ee'
+                        },
+                        {
+                            title: '杨少生日',
+                            start: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString().split('T')[0],
+                            backgroundColor: '#f72585',
+                            borderColor: '#f72585'
+                        },
+                        {
+                            title: '项目截止',
+                            start: new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0],
+                            backgroundColor: '#3f37c9',
+                            borderColor: '#3f37c9'
+                        },
+                        {
+                            title: '班级活动',
+                            start: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString().split('T')[0],
+                            backgroundColor: '#4cc9f0',
+                            borderColor: '#4cc9f0'
+                        },
+                        {
+                            title: '周末聚餐',
+                            start: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0],
+                            backgroundColor: '#4895ef',
+                            borderColor: '#4895ef'
+                        }
+                    ],
+                    eventDisplay: 'block',
+                    nowIndicator: true,
+                    dayMaxEvents: true,
+                    eventClick: function(info) {
+                        alert('事件: ' + info.event.title + '\n日期: ' + info.event.start.toLocaleDateString());
+                        info.jsEvent.preventDefault();
                     }
-                ],
-                eventDisplay: 'block',
-                nowIndicator: true,
-                dayMaxEvents: true,
-                eventClick: function(info) {
-                    alert('事件: ' + info.event.title + '\n日期: ' + info.event.start.toLocaleDateString());
-                    info.jsEvent.preventDefault();
-                }
-            });
-            calendar.render();
+                });
+                calendar.render();
+            }
 
             // 模态框日历
             const modalCalendarEl = document.getElementById('modal-calendar');
-            const modalCalendar = new FullCalendar.Calendar(modalCalendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'zh-cn',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    {
-                        title: '暂无',
-                        start: new Date().toISOString().split('T')[0],
-                        backgroundColor: '#e74c3c',
-                        borderColor: '#e74c3c'
+            if (modalCalendarEl) {
+                const modalCalendar = new FullCalendar.Calendar(modalCalendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'zh-cn',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
                     },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString().split('T')[0],
-                        backgroundColor: '#2ecc71',
-                        borderColor: '#2ecc71'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0],
-                        backgroundColor: '#3498db',
-                        borderColor: '#3498db'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString().split('T')[0],
-                        backgroundColor: '#9b59b6',
-                        borderColor: '#9b59b6'
-                    },
-                    {
-                        title: '暂无',
-                        start: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0],
-                        backgroundColor: '#f39c12',
-                        borderColor: '#f39c12'
+                    events: [
+                        {
+                            title: '寝室会议',
+                            start: new Date().toISOString().split('T')[0],
+                            backgroundColor: '#4361ee',
+                            borderColor: '#4361ee'
+                        },
+                        {
+                            title: '杨少生日派对',
+                            start: new Date(new Date().setDate(new Date().getDate() + 5)).toISOString().split('T')[0],
+                            backgroundColor: '#f72585',
+                            borderColor: '#f72585'
+                        },
+                        {
+                            title: '项目截止',
+                            start: new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0],
+                            backgroundColor: '#3f37c9',
+                            borderColor: '#3f37c9'
+                        },
+                        {
+                            title: '班级户外活动',
+                            start: new Date(new Date().setDate(new Date().getDate() + 3)).toISOString().split('T')[0],
+                            backgroundColor: '#4cc9f0',
+                            borderColor: '#4cc9f0'
+                        },
+                        {
+                            title: '周末聚餐',
+                            start: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0],
+                            backgroundColor: '#4895ef',
+                            borderColor: '#4895ef'
+                        }
+                    ],
+                    eventDisplay: 'block',
+                    nowIndicator: true,
+                    dayMaxEvents: true,
+                    eventClick: function(info) {
+                        alert('事件: ' + info.event.title + '\n日期: ' + info.event.start.toLocaleDateString());
+                        info.jsEvent.preventDefault();
                     }
-                ],
-                eventDisplay: 'block',
-                nowIndicator: true,
-                dayMaxEvents: true,
-                eventClick: function(info) {
-                    alert('事件: ' + info.event.title + '\n日期: ' + info.event.start.toLocaleDateString());
-                    info.jsEvent.preventDefault();
-                }
-            });
-            modalCalendar.render();
-
-            // 日历视图切换
-            document.getElementById('dayView').addEventListener('click', function() {
-                modalCalendar.changeView('timeGridDay');
-                document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
-                    btn.classList.remove('active');
                 });
-                this.classList.add('active');
-            });
+                modalCalendar.render();
 
-            document.getElementById('weekView').addEventListener('click', function() {
-                modalCalendar.changeView('timeGridWeek');
-                document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
-                    btn.classList.remove('active');
+                // 日历视图切换
+                document.getElementById('dayView').addEventListener('click', function() {
+                    modalCalendar.changeView('timeGridDay');
+                    document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 });
-                this.classList.add('active');
-            });
 
-            document.getElementById('monthView').addEventListener('click', function() {
-                modalCalendar.changeView('dayGridMonth');
-                document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
-                    btn.classList.remove('active');
+                document.getElementById('weekView').addEventListener('click', function() {
+                    modalCalendar.changeView('timeGridWeek');
+                    document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 });
-                this.classList.add('active');
-            });
-        });
 
-        // 实时时间显示
-        function updateTime() {
-            const now = new Date();
-            const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
-            
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const weekday = weekdays[now.getDay()];
-            
-            const timeString = `${year}年${month}月${day}日 ${hours}时${minutes}分${seconds}秒 星期${weekday}`;
-            
-            document.getElementById('current-time').textContent = timeString;
-            document.getElementById('footer-time').textContent = timeString;
+                document.getElementById('monthView').addEventListener('click', function() {
+                    modalCalendar.changeView('dayGridMonth');
+                    document.querySelectorAll('#calendarModal .btn-group button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            }
         }
         
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // 显示当前页面URL
-        document.getElementById('current-url').textContent = window.location.href;
-
-        // 获取真实IP地址
-        function getIPAddress() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('ip-address').textContent = data.ip;
-                })
-                .catch(error => {
-                    console.error('获取IP地址失败:', error);
-                    // 如果API请求失败，尝试其他方法
-                    fetch('https://ipapi.co/json/')
-                        .then(response => response.json())
-                        .then(data => {
-                            document.getElementById('ip-address').textContent = data.ip;
-                        })
-                        .catch(error => {
-                            console.error('获取IP地址失败:', error);
-                            document.getElementById('ip-address').textContent = '无法获取IP地址';
-                        });
-                });
-        }
-        
-        getIPAddress();
-
         // 播放歌曲
         function playSong(url) {
             const audioPlayer = document.getElementById('audio-player');
             audioPlayer.src = url;
             audioPlayer.style.display = 'block';
             audioPlayer.play();
+            
+            // 添加视觉反馈
+            const playBtn = event.currentTarget;
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playBtn.onclick = function() {
+                audioPlayer.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.onclick = function() {
+                    playSong(url);
+                };
+            };
         }
-
+        
         // 外部链接确认
         let pendingLink = '';
         const linkConfirmModal = new bootstrap.Modal(document.getElementById('linkConfirmModal'));
