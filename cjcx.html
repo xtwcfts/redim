@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,7 +13,7 @@
         }
         
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
+            font-family: 'SimSun', serif;
             background-color: #f5f5f5;
             min-height: 100vh;
             display: flex;
@@ -33,8 +34,11 @@
         }
         
         .logo {
-            max-width: 750px;
-            margin-bottom: 10px;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 10px;
+            display: block;
+            padding: 0 20px;
         }
         
         h1 {
@@ -79,7 +83,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin: 0 auto 20px;
+            max-width: 500px;
         }
         
         .form-group {
@@ -95,7 +100,7 @@
         
         .form-control {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 16px;
@@ -178,6 +183,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             display: none;
+            position: relative;
         }
         
         .student-info {
@@ -196,17 +202,26 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
         
         .score-table th, .score-table td {
             border: 1px solid #ddd;
             padding: 12px;
-            text-align: center;
         }
         
         .score-table th {
             background-color: #f5f5f5;
             font-weight: bold;
+            text-align: center;
+        }
+        
+        .score-table .subject-column {
+            text-align: center; /* 科目列文字居中 */
+        }
+        
+        .score-table .score-column {
+            text-align: center;
         }
         
         .score-table tr:nth-child(even) {
@@ -224,6 +239,278 @@
             display: none;
         }
         
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 10px 15px;
+            background-color: #2c6ecb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .action-btn:hover {
+            background-color: #1a56a7;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+            border: none;
+        }
+        
+        /* 署名样式 */
+        .signature {
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* 下载弹窗样式 */
+        .download-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .download-modal {
+            background-color: #fff;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 15px 20px;
+            background-color: #2c6ecb;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .preview-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        
+        .preview-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .download-options {
+            margin: 15px 0;
+        }
+        
+        .download-options p {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .format-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .format-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .format-option:hover, .format-option.selected {
+            background-color: #2c6ecb;
+            color: white;
+            border-color: #2c6ecb;
+        }
+        
+        .location-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .location-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .location-option:hover, .location-option.selected {
+            background-color: #2c6ecb;
+            color: white;
+            border-color: #2c6ecb;
+        }
+        
+        .path-selection {
+            margin-bottom: 20px;
+        }
+        
+        .path-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .path-input input {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .browse-btn {
+            padding: 8px 15px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .browse-btn:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cancel-btn {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .confirm-btn {
+            background-color: #2c6ecb;
+            color: white;
+            border: 1px solid #2c6ecb;
+        }
+        
+        .confirm-btn:hover {
+            background-color: #1a56a7;
+        }
+        
+        /* 保存位置选择弹窗 */
+        .location-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1010;
+        }
+        
+        .location-modal {
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        .location-modal-header {
+            padding: 15px 20px;
+            background-color: #2c6ecb;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .location-modal-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .location-modal-body {
+            padding: 20px;
+        }
+        
+        .location-modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
         @media (max-width: 480px) {
             .container {
                 padding: 10px;
@@ -237,13 +524,37 @@
                 padding: 8px;
                 font-size: 14px;
             }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .signature {
+                position: static;
+                text-align: right;
+                margin-top: 20px;
+            }
+            
+            .format-options, .location-options {
+                flex-direction: column;
+            }
+            
+            .format-option, .location-option {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://cx.ahzsks.cn/include/20090609.jpg" alt="教育考试中心" class="logo">
+            <img src="https://youke1.picui.cn/s1/2025/08/19/68a46d9b9e0d6.jpg" alt="教育招生考试院" class="logo">
             <h1>成绩查询</h1>
         </div>
         
@@ -252,39 +563,39 @@
         </div>
         
         <div class="marquee-container">
-            <div class="marquee">您现在正在访问成绩查询网站，当前页面访问人数较多，请您耐心等待...</div>
+            <div class="marquee">您现在正在访问成绩查询网页(https://xtwcfts.github.io/redim/cjcx.html)，当前页面访问人数较多，请您耐心等待...</div>
         </div>
         
         <div class="query-form" id="queryForm">
             <form id="scoreQueryForm">
                 <div class="form-group">
                     <label for="exam-number">准考证号：</label>
-                    <input type="text" id="exam-number" class="form-control" placeholder="请输入准考证号(1-1000)">
+                    <input type="text" id="exam-number" class="form-control" placeholder="">
                     <div class="error-message" id="exam-number-error"></div>
                 </div>
                 
                 <div class="form-group">
                     <label for="id-number">身份证号：</label>
-                    <input type="text" id="id-number" class="form-control" placeholder="请输入身份证号(340001-341000)">
+                    <input type="text" id="id-number" class="form-control" placeholder="">
                     <div class="error-message" id="id-number-error"></div>
                 </div>
                 
                 <div class="form-group">
                     <label for="name">姓名：</label>
-                    <input type="text" id="name" class="form-control" placeholder="请输入姓名">
+                    <input type="text" id="name" class="form-control" placeholder="">
                     <div class="error-message" id="name-error"></div>
                 </div>
                 
                 <div class="form-group">
                     <label for="captcha">验证码：</label>
                     <div class="captcha-container">
-                        <input type="text" id="captcha" class="form-control captcha-input" placeholder="请输入验证码">
+                        <input type="text" id="captcha" class="form-control captcha-input" placeholder="">
                         <div class="captcha-box" id="captcha-display"></div>
                     </div>
                     <div class="error-message" id="captcha-error"></div>
                 </div>
                 
-                <button type="submit" class="submit-btn">查询（暂无法使用）</button>
+                <button type="submit" class="submit-btn">查询</button>
             </form>
         </div>
         
@@ -302,55 +613,138 @@
             <table class="score-table" id="scoreTable">
                 <thead>
                     <tr>
-                        <th>科目</th>
-                        <th>主观题</th>
-                        <th>成绩</th>
+                        <th class="subject-column">科目</th>
+                        <th class="score-column">主观题</th>
+                        <th class="score-column">成绩</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>语文</td>
-                        <td id="chinese-subjective"></td>
-                        <td id="chinese-score"></td>
+                        <td class="subject-column">语文</td>
+                        <td class="score-column" id="chinese-subjective"></td>
+                        <td class="score-column" id="chinese-score"></td>
                     </tr>
                     <tr>
-                        <td>数学</td>
-                        <td id="math-subjective"></td>
-                        <td id="math-score"></td>
+                        <td class="subject-column">数学</td>
+                        <td class="score-column" id="math-subjective"></td>
+                        <td class="score-column" id="math-score"></td>
                     </tr>
                     <tr>
-                        <td>英语</td>
-                        <td id="english-subjective"></td>
-                        <td id="english-score"></td>
+                        <td class="subject-column">英语</td>
+                        <td class="score-column" id="english-subjective"></td>
+                        <td class="score-column" id="english-score"></td>
                     </tr>
                     <tr>
-                        <td id="science-subject">物理/历史</td>
-                        <td id="science-subjective"></td>
-                        <td id="science-score"></td>
+                        <td class="subject-column" id="science-subject">物理/历史</td>
+                        <td class="score-column" id="science-subjective-td"></td>
+                        <td class="score-column" id="science-score"></td>
                     </tr>
                     <tr>
-                        <td id="social-subject">政治/地理</td>
-                        <td id="social-subjective"></td>
-                        <td id="social-score"></td>
+                        <td class="subject-column" id="social-subject">政治/地理</td>
+                        <td class="score-column" id="social-subjective-td"></td>
+                        <td class="score-column" id="social-score"></td>
                     </tr>
                     <tr>
-                        <td id="bio-subject">生物/化学</td>
-                        <td id="bio-subjective"></td>
-                        <td id="bio-score"></td>
+                        <td class="subject-column" id="bio-subject">生物/化学</td>
+                        <td class="score-column" id="bio-subjective-td"></td>
+                        <td class="score-column" id="bio-score"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><strong>总分</strong></td>
-                        <td id="total-score"></td>
+                        <td class="subject-column"><strong>总分</strong></td>
+                        <td class="score-column" colspan="2" id="total-score"></td>
+                    </tr>
+                    <tr>
+                        <td class="subject-column"><strong>排名</strong></td>
+                        <td class="score-column" colspan="2" id="rank-score"></td>
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="action-buttons">
+                <button class="action-btn" id="download-btn">下载成绩单</button>
+                <button class="action-btn" id="print-btn">打印成绩单</button>
+                <button class="action-btn" id="query-again-btn">返回查询</button>
+            </div>
+            
+            <hr class="divider">
+            
+            <!-- 署名 -->
+            <div class="signature">教育招生考试院</div>
         </div>
         
         <div class="footer">
-            <div>念安 版权所有</div>
-            <div>地址：安徽省合肥市教育考试中心</div>
+            <div>念安 版权所有 | 地址：教育招生考试院</div>
             <div>登录 IP：<span id="ip-address">正在获取...</span></div>
             <div id="current-time"></div>
+        </div>
+    </div>
+    
+    <!-- 下载弹窗 -->
+    <div class="download-modal-overlay" id="downloadModal">
+        <div class="download-modal">
+            <div class="modal-header">
+                <div class="modal-title">下载成绩单</div>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-section">
+                    <div class="preview-title">在线预览</div>
+                    <div id="scorePreview">
+                        <!-- 预览内容将在这里动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="download-options">
+                    <p>请选择下载格式：</p>
+                    <div class="format-options">
+                        <div class="format-option" data-format="excel">Excel</div>
+                        <div class="format-option" data-format="pdf">PDF</div>
+                        <div class="format-option" data-format="image">图片</div>
+                    </div>
+                </div>
+                
+                <div class="download-options">
+                    <p>请选择保存位置：</p>
+                    <div class="location-options">
+                        <div class="location-option" data-location="default">默认下载路径</div>
+                        <div class="location-option" data-location="album">相册</div>
+                        <div class="location-option" data-location="custom">自定义路径...</div>
+                    </div>
+                </div>
+                
+                <div class="path-selection">
+                    <p>保存路径：</p>
+                    <div class="path-input">
+                        <input type="text" id="savePath" placeholder="默认下载路径" readonly>
+                        <button class="browse-btn" id="browseBtn">浏览...</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancel-btn" id="cancelDownload">取消</button>
+                <button class="modal-btn confirm-btn" id="confirmDownload">确认下载</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 保存位置选择弹窗 -->
+    <div class="location-modal-overlay" id="locationModal">
+        <div class="location-modal">
+            <div class="location-modal-header">
+                <div class="location-modal-title">选择保存位置</div>
+                <button class="close-modal" id="closeLocationModal">&times;</button>
+            </div>
+            <div class="location-modal-body">
+                <div class="location-options">
+                    <div class="location-option" data-location="documents">我的文档</div>
+                    <div class="location-option" data-location="desktop">桌面</div>
+                    <div class="location-option" data-location="downloads">下载</div>
+                </div>
+            </div>
+            <div class="location-modal-footer">
+                <button class="modal-btn cancel-btn" id="cancelLocation">取消</button>
+                <button class="modal-btn confirm-btn" id="confirmLocation">确认</button>
+            </div>
         </div>
     </div>
 
@@ -377,43 +771,45 @@
                 this.textContent = currentCaptcha;
             });
             
-            // 自动填充身份证号
-            document.getElementById('exam-number').addEventListener('input', function() {
-                const examNumber = parseInt(this.value);
-                if (!isNaN(examNumber) && examNumber >= 1 && examNumber <= 1000) {
-                    const idNumber = 340000 + examNumber;
-                    document.getElementById('id-number').value = idNumber;
-                }
-            });
-            
             // 生成随机成绩数据
             function generateScores(examNumber) {
-                // 确保每个准考证号对应固定的成绩
-                const seed = parseInt(examNumber);
-                const random = (min, max) => Math.floor(min + (seed % (max - min + 1)));
+                // 从准考证号提取后四位作为种子
+                const seed = parseInt(examNumber.slice(2)) || 1;
+                
+                // 生成随机数值
+                const random = (min, max, uniqueSeed) => {
+                    const hash = (seed * 13 + uniqueSeed * 7) % 101;
+                    return Math.floor(min + (hash / 100) * (max - min + 1));
+                };
                 
                 // 主科成绩 (150分满分)
-                const chineseScore = random(90, 150);
-                const mathScore = random(80, 150);
-                const englishScore = random(85, 150);
+                const chineseScore = random(90, 150, 1);
+                const mathScore = random(80, 150, 2);
+                const englishScore = random(85, 150, 3);
                 
                 // 主观题成绩 (0-30分)
-                const chineseSubjective = random(0, 30);
-                const mathSubjective = random(0, 30);
-                const englishSubjective = random(0, 30);
+                const chineseSubjective = random(0, 30, 10);
+                const mathSubjective = random(0, 30, 11);
+                const englishSubjective = random(0, 30, 12);
                 
                 // 理科或文科选择
                 const isScience = seed % 2 === 0;
                 
                 // 理科或文科成绩 (100分满分)
-                const scienceScore = isScience ? random(60, 100) : random(65, 100);
-                const socialScore = isScience ? random(70, 100) : random(60, 100);
-                const bioScore = isScience ? random(50, 100) : random(55, 100);
+                const scienceScore = isScience ? random(60, 100, 4) : random(65, 100, 4);
+                const socialScore = isScience ? random(70, 100, 5) : random(60, 100, 5);
+                const bioScore = isScience ? random(50, 100, 6) : random(55, 100, 6);
                 
                 // 主观题成绩 (0-20分)
-                const scienceSubjective = random(0, 20);
-                const socialSubjective = random(0, 20);
-                const bioSubjective = random(0, 20);
+                const scienceSubjective = random(0, 20, 13);
+                const socialSubjective = random(0, 20, 14);
+                const bioSubjective = random(0, 20, 15);
+                
+                // 计算总分
+                const total = chineseScore + mathScore + englishScore + scienceScore + socialScore + bioScore;
+                
+                // 生成排名 (1-9999名)
+                const rank = Math.floor(random(1, 9999, 20));
                 
                 return {
                     chinese: { score: chineseScore, subjective: chineseSubjective },
@@ -434,53 +830,81 @@
                         score: bioScore, 
                         subjective: bioSubjective 
                     },
-                    total: chineseScore + mathScore + englishScore + scienceScore + socialScore + bioScore
+                    total: total,
+                    rank: rank
                 };
             }
             
             // 表单验证
             document.getElementById('scoreQueryForm').addEventListener('submit', function(e) {
                 e.preventDefault();
+                
+                // 重置所有错误信息
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
                 let isValid = true;
                 
-                // 验证准考证号
+                // 验证准考证号 (25+0001格式)
                 const examNumber = document.getElementById('exam-number').value.trim();
+                const examPattern = /^25\d{4}$/; // 25开头，共6位数字
                 if (!examNumber) {
                     document.getElementById('exam-number-error').textContent = '请输入准考证号';
                     document.getElementById('exam-number-error').style.display = 'block';
                     isValid = false;
-                } else if (!/^\d+$/.test(examNumber) || parseInt(examNumber) < 1 || parseInt(examNumber) > 1000) {
-                    document.getElementById('exam-number-error').textContent = '请输入1-1000之间的准考证号';
+                } else if (!examPattern.test(examNumber) || parseInt(examNumber) < 250001 || parseInt(examNumber) > 259999) {
+                    document.getElementById('exam-number-error').textContent = '请输入正确格式的准考证号(如250001-259999)';
                     document.getElementById('exam-number-error').style.display = 'block';
                     isValid = false;
-                } else {
-                    document.getElementById('exam-number-error').style.display = 'none';
                 }
                 
-                // 验证身份证号
+                // 验证身份证号 (34+0001格式，与准考证号后四位对应)
                 const idNumber = document.getElementById('id-number').value.trim();
-                const expectedIdNumber = 340000 + parseInt(examNumber || 0);
+                const idPattern = /^34\d{4}$/; // 34开头，共6位数字
+                
                 if (!idNumber) {
                     document.getElementById('id-number-error').textContent = '请输入身份证号';
                     document.getElementById('id-number-error').style.display = 'block';
                     isValid = false;
-                } else if (!/^\d+$/.test(idNumber) || parseInt(idNumber) !== expectedIdNumber) {
-                    document.getElementById('id-number-error').textContent = `请输入正确的身份证号(应为${expectedIdNumber})`;
+                } else if (!idPattern.test(idNumber) || parseInt(idNumber) < 340001 || parseInt(idNumber) > 349999) {
+                    document.getElementById('id-number-error').textContent = '请输入正确格式的身份证号(如340001-349999)';
                     document.getElementById('id-number-error').style.display = 'block';
                     isValid = false;
-                } else {
-                    document.getElementById('id-number-error').style.display = 'none';
+                } else if (examNumber && idNumber) {
+                    // 验证准考证号与身份证号的对应关系（后四位必须相同）
+                    const examSuffix = examNumber.slice(2); // 获取后四位
+                    const idSuffix = idNumber.slice(2); // 获取后四位
+                    if (examSuffix !== idSuffix) {
+                        document.getElementById('id-number-error').textContent = '身份证号与准考证号不匹配';
+                        document.getElementById('id-number-error').style.display = 'block';
+                        isValid = false;
+                    }
                 }
                 
-                // 验证姓名
+                // 验证姓名 (只能是汉字)
                 const name = document.getElementById('name').value.trim();
+                const namePattern = /^[\u4e00-\u9fa5]+$/; // 只允许汉字
                 if (!name) {
                     document.getElementById('name-error').textContent = '请输入姓名';
                     document.getElementById('name-error').style.display = 'block';
                     isValid = false;
-                } else {
-                    document.getElementById('name-error').style.display = 'none';
+                } else if (!namePattern.test(name)) {
+                    document.getElementById('name-error').textContent = '姓名只能包含汉字，不能包含字母、数字或特殊字符';
+                    document.getElementById('name-error').style.display = 'block';
+                    isValid = false;
                 }
+                
+                // 实时验证姓名输入
+                document.getElementById('name').addEventListener('input', function() {
+                    const value = this.value.trim();
+                    if (value && !namePattern.test(value)) {
+                        document.getElementById('name-error').textContent = '姓名只能包含汉字，不能包含字母、数字或特殊字符';
+                        document.getElementById('name-error').style.display = 'block';
+                    } else {
+                        document.getElementById('name-error').style.display = 'none';
+                    }
+                });
                 
                 // 验证验证码
                 const captcha = document.getElementById('captcha').value.trim();
@@ -496,8 +920,6 @@
                     currentCaptcha = generateCaptcha();
                     document.getElementById('captcha-display').textContent = currentCaptcha;
                     document.getElementById('captcha').value = '';
-                } else {
-                    document.getElementById('captcha-error').style.display = 'none';
                 }
                 
                 if (isValid) {
@@ -508,64 +930,370 @@
             
             // 显示查询结果
             function showResults(examNumber, idNumber, name) {
-                // 生成成绩数据
-                const scores = generateScores(examNumber);
-                
-                // 填写学生信息
-                document.getElementById('result-name').textContent = name;
-                document.getElementById('result-exam-number').textContent = examNumber;
-                document.getElementById('result-id-number').textContent = idNumber;
-                
-                // 填写成绩
-                document.getElementById('chinese-score').textContent = scores.chinese.score;
-                document.getElementById('chinese-subjective').textContent = scores.chinese.subjective;
-                
-                document.getElementById('math-score').textContent = scores.math.score;
-                document.getElementById('math-subjective').textContent = scores.math.subjective;
-                
-                document.getElementById('english-score').textContent = scores.english.score;
-                document.getElementById('english-subjective').textContent = scores.english.subjective;
-                
-                document.getElementById('science-subject').textContent = scores.science.subject;
-                document.getElementById('science-score').textContent = scores.science.score;
-                document.getElementById('science-subjective').textContent = scores.science.subjective;
-                
-                document.getElementById('social-subject').textContent = scores.social.subject;
-                document.getElementById('social-score').textContent = scores.social.score;
-                document.getElementById('social-subjective').textContent = scores.social.subjective;
-                
-                document.getElementById('bio-subject').textContent = scores.bio.subject;
-                document.getElementById('bio-score').textContent = scores.bio.score;
-                document.getElementById('bio-subjective').textContent = scores.bio.subjective;
-                
-                document.getElementById('total-score').textContent = scores.total;
-                
-                // 检查是否高分屏蔽
-                if (scores.total > 700) {
-                    document.getElementById('excellent-notice').style.display = 'block';
-                    document.getElementById('scoreTable').style.display = 'none';
-                } else {
-                    document.getElementById('excellent-notice').style.display = 'none';
-                    document.getElementById('scoreTable').style.display = 'table';
+                try {
+                    // 生成成绩数据
+                    const scores = generateScores(examNumber);
+                    
+                    // 填写学生信息
+                    document.getElementById('result-name').textContent = name || '未知';
+                    document.getElementById('result-exam-number').textContent = examNumber || '未知';
+                    document.getElementById('result-id-number').textContent = idNumber || '未知';
+                    
+                    // 填写成绩
+                    document.getElementById('chinese-score').textContent = scores.chinese.score;
+                    document.getElementById('chinese-subjective').textContent = scores.chinese.subjective;
+                    
+                    document.getElementById('math-score').textContent = scores.math.score;
+                    document.getElementById('math-subjective').textContent = scores.math.subjective;
+                    
+                    document.getElementById('english-score').textContent = scores.english.score;
+                    document.getElementById('english-subjective').textContent = scores.english.subjective;
+                    
+                    document.getElementById('science-subject').textContent = scores.science.subject;
+                    document.getElementById('science-score').textContent = scores.science.score;
+                    document.getElementById('science-subjective-td').textContent = scores.science.subjective;
+                    
+                    document.getElementById('social-subject').textContent = scores.social.subject;
+                    document.getElementById('social-score').textContent = scores.social.score;
+                    document.getElementById('social-subjective-td').textContent = scores.social.subjective;
+                    
+                    document.getElementById('bio-subject').textContent = scores.bio.subject;
+                    document.getElementById('bio-score').textContent = scores.bio.score;
+                    document.getElementById('bio-subjective-td').textContent = scores.bio.subjective;
+                    
+                    document.getElementById('total-score').textContent = scores.total;
+                    document.getElementById('rank-score').textContent = scores.rank;
+                    
+                    // 检查是否高分屏蔽
+                    if (scores.total > 700) {
+                        document.getElementById('excellentNotice').style.display = 'block';
+                        document.getElementById('scoreTable').style.display = 'none';
+                    } else {
+                        document.getElementById('excellentNotice').style.display = 'none';
+                        document.getElementById('scoreTable').style.display = 'table';
+                    }
+                    
+                    // 切换显示
+                    document.getElementById('queryForm').style.display = 'none';
+                    document.getElementById('resultContainer').style.display = 'block';
+                    
+                    // 滚动到结果区域
+                    document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
+                } catch (error) {
+                    console.error('显示成绩时出错:', error);
+                    alert('查询过程中出现错误，请重试');
                 }
-                
-                // 切换显示
-                document.getElementById('queryForm').style.display = 'none';
-                document.getElementById('resultContainer').style.display = 'block';
-                
-                // 滚动到结果区域
-                document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth' });
             }
             
-            // 获取IP地址
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('ip-address').textContent = data.ip;
-                })
-                .catch(() => {
-                    document.getElementById('ip-address').textContent = '获取失败';
+            // 下载相关功能
+            let selectedFormat = null;
+            let selectedLocation = 'default';
+            
+            // 生成预览内容
+            function generatePreview() {
+                const previewContainer = document.getElementById('scorePreview');
+                
+                // 克隆成绩表格作为预览
+                const scoreTable = document.getElementById('scoreTable').cloneNode(true);
+                scoreTable.removeAttribute('id');
+                scoreTable.style.width = '100%';
+                
+                // 添加学生信息到预览
+                const studentInfo = document.createElement('div');
+                studentInfo.style.marginBottom = '15px';
+                studentInfo.style.padding = '10px';
+                studentInfo.style.backgroundColor = '#f9f9f9';
+                studentInfo.style.borderRadius = '4px';
+                
+                const name = document.createElement('p');
+                name.style.marginBottom = '5px';
+                name.innerHTML = `<strong>姓名：</strong>${document.getElementById('result-name').textContent}`;
+                
+                const examNumber = document.createElement('p');
+                examNumber.style.marginBottom = '5px';
+                examNumber.innerHTML = `<strong>准考证号：</strong>${document.getElementById('result-exam-number').textContent}`;
+                
+                studentInfo.appendChild(name);
+                studentInfo.appendChild(examNumber);
+                
+                // 清空并添加内容到预览容器
+                previewContainer.innerHTML = '';
+                previewContainer.appendChild(studentInfo);
+                previewContainer.appendChild(scoreTable);
+                
+                // 添加署名
+                const signature = document.createElement('div');
+                signature.style.textAlign = 'right';
+                signature.style.marginTop = '10px';
+                signature.style.fontSize = '14px';
+                signature.style.color = '#666';
+                signature.style.fontStyle = 'italic';
+                signature.textContent = '教育招生考试院';
+                previewContainer.appendChild(signature);
+            }
+            
+            // 显示下载弹窗
+            document.getElementById('download-btn').addEventListener('click', function() {
+                // 生成预览内容
+                generatePreview();
+                
+                // 重置选择状态
+                selectedFormat = null;
+                selectedLocation = 'default';
+                document.querySelectorAll('.format-option').forEach(opt => {
+                    opt.classList.remove('selected');
                 });
+                document.querySelectorAll('.location-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                document.querySelector('.location-option[data-location="default"]').classList.add('selected');
+                
+                // 设置默认路径文本
+                updateSavePath();
+                
+                // 显示弹窗
+                document.getElementById('downloadModal').style.display = 'flex';
+                
+                // 阻止页面滚动
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // 更新保存路径显示
+            function updateSavePath() {
+                const name = document.getElementById('result-name').textContent;
+                let path = '';
+                
+                switch(selectedLocation) {
+                    case 'default':
+                        path = '下载/' + name + '_成绩单';
+                        break;
+                    case 'album':
+                        path = '相册/' + name + '_成绩单';
+                        break;
+                    case 'documents':
+                        path = '我的文档/' + name + '_成绩单';
+                        break;
+                    case 'desktop':
+                        path = '桌面/' + name + '_成绩单';
+                        break;
+                    case 'downloads':
+                        path = '下载/' + name + '_成绩单';
+                        break;
+                    case 'pictures':
+                        path = '图片库/' + name + '_成绩单';
+                        break;
+                    default:
+                        path = selectedLocation || '下载/' + name + '_成绩单';
+                }
+                
+                document.getElementById('savePath').value = path;
+            }
+            
+            // 关闭下载弹窗
+            function closeDownloadModal() {
+                document.getElementById('downloadModal').style.display = 'none';
+                // 恢复页面滚动
+                document.body.style.overflow = '';
+            }
+            
+            document.getElementById('closeModal').addEventListener('click', closeDownloadModal);
+            document.getElementById('cancelDownload').addEventListener('click', closeDownloadModal);
+            
+            // 点击弹窗外部关闭弹窗
+            document.getElementById('downloadModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeDownloadModal();
+                }
+            });
+            
+            // 选择下载格式
+            document.querySelectorAll('.format-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // 移除其他选项的选中状态
+                    document.querySelectorAll('.format-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    // 添加当前选项的选中状态
+                    this.classList.add('selected');
+                    selectedFormat = this.getAttribute('data-format');
+                });
+            });
+            
+            // 选择保存位置
+            document.querySelectorAll('.location-option[data-location]').forEach(option => {
+                option.addEventListener('click', function() {
+                    const location = this.getAttribute('data-location');
+                    
+                    if (location === 'custom') {
+                        // 显示位置选择弹窗
+                        document.getElementById('locationModal').style.display = 'flex';
+                        return;
+                    }
+                    
+                    // 移除其他选项的选中状态
+                    document.querySelectorAll('.location-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    // 添加当前选项的选中状态
+                    this.classList.add('selected');
+                    selectedLocation = location;
+                    
+                    // 更新保存路径
+                    updateSavePath();
+                });
+            });
+            
+            // 关闭位置选择弹窗
+            function closeLocationModal() {
+                document.getElementById('locationModal').style.display = 'none';
+            }
+            
+            document.getElementById('closeLocationModal').addEventListener('click', closeLocationModal);
+            document.getElementById('cancelLocation').addEventListener('click', closeLocationModal);
+            
+            // 点击位置弹窗外部关闭弹窗
+            document.getElementById('locationModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLocationModal();
+                }
+            });
+            
+            // 位置弹窗中选择位置
+            let locationModalSelected = null;
+            document.querySelectorAll('.location-modal-body .location-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // 移除其他选项的选中状态
+                    document.querySelectorAll('.location-modal-body .location-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    // 添加当前选项的选中状态
+                    this.classList.add('selected');
+                    locationModalSelected = this.getAttribute('data-location');
+                });
+            });
+            
+            // 确认选择位置
+            document.getElementById('confirmLocation').addEventListener('click', function() {
+                if (!locationModalSelected) {
+                    alert('请选择保存位置');
+                    return;
+                }
+                
+                if (locationModalSelected === 'other') {
+                    const name = document.getElementById('result-name').textContent;
+                    const defaultPath = '自定义路径/' + name + '_成绩单';
+                    const newPath = prompt('请输入保存路径:', defaultPath);
+                    if (newPath !== null) {
+                        selectedLocation = newPath;
+                        // 更新下载弹窗中的路径显示
+                        updateSavePath();
+                    }
+                } else {
+                    selectedLocation = locationModalSelected;
+                    // 更新下载弹窗中的路径显示
+                    updateSavePath();
+                    
+                    // 更新下载弹窗中的选中状态
+                    document.querySelectorAll('.location-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    const matchingOption = document.querySelector(`.location-option[data-location="${selectedLocation}"]`);
+                    if (matchingOption) {
+                        matchingOption.classList.add('selected');
+                    } else {
+                        document.querySelector('.location-option[data-location="custom"]').classList.add('selected');
+                    }
+                }
+                
+                closeLocationModal();
+            });
+            
+            // 浏览路径按钮
+            document.getElementById('browseBtn').addEventListener('click', function() {
+                document.getElementById('locationModal').style.display = 'flex';
+            });
+            
+            // 确认下载
+            document.getElementById('confirmDownload').addEventListener('click', function() {
+                if (!selectedFormat) {
+                    alert('请选择下载格式');
+                    return;
+                }
+                
+                const savePath = document.getElementById('savePath').value;
+                const fileName = savePath + '.' + selectedFormat.toLowerCase();
+                
+                // 获取成绩数据用于下载
+                const name = document.getElementById('result-name').textContent;
+                const examNumber = document.getElementById('result-exam-number').textContent;
+                
+                // 模拟下载过程
+                alert(`成绩单已成功下载至:\n${fileName}\n\n格式: ${selectedFormat.toUpperCase()}\n考生: ${name}\n准考证号: ${examNumber}`);
+                
+                // 关闭弹窗
+                closeDownloadModal();
+            });
+            
+            // 打印成绩单按钮
+            document.getElementById('print-btn').addEventListener('click', function() {
+                window.print();
+            });
+            
+            // 再次查询按钮
+            document.getElementById('query-again-btn').addEventListener('click', function() {
+                document.getElementById('resultContainer').style.display = 'none';
+                document.getElementById('downloadModal').style.display = 'none';
+                document.getElementById('locationModal').style.display = 'none';
+                document.getElementById('queryForm').style.display = 'block';
+                document.getElementById('scoreQueryForm').reset();
+                currentCaptcha = generateCaptcha();
+                document.getElementById('captcha-display').textContent = currentCaptcha;
+                document.getElementById('queryForm').scrollIntoView({ behavior: 'smooth' });
+                
+                // 恢复页面滚动
+                document.body.style.overflow = '';
+            });
+            
+            // 获取IP地址
+            function getIPAddress() {
+                const ipServices = [
+                    'https://api.ipify.org?format=json',
+                    'https://ipinfo.io/json',
+                    'https://api.myip.com'
+                ];
+                
+                const tryNextService = (index) => {
+                    if (index >= ipServices.length) {
+                        document.getElementById('ip-address').textContent = '获取失败';
+                        return;
+                    }
+                    
+                    fetch(ipServices[index])
+                        .then(response => {
+                            if (!response.ok) throw new Error('请求失败');
+                            return response.json();
+                        })
+                        .then(data => {
+                            let ip;
+                            if (data.ip) ip = data.ip;
+                            else if (data.ipAddress) ip = data.ipAddress;
+                            
+                            if (ip) {
+                                document.getElementById('ip-address').textContent = ip;
+                            } else {
+                                tryNextService(index + 1);
+                            }
+                        })
+                        .catch(() => {
+                            tryNextService(index + 1);
+                        });
+                };
+                
+                tryNextService(0);
+            }
+            
+            // 初始化IP获取
+            getIPAddress();
             
             // 更新时间
             function updateTime() {
@@ -591,3 +1319,4 @@
     </script>
 </body>
 </html>
+    
