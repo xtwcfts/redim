@@ -3,329 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网址导航 - 快速访问热门网站</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>功能链接提示</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
         }
-        
+
         body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
             min-height: 100vh;
+            background: #f7f8fc;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .container {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
             padding: 20px;
         }
-        
-        /* 分类标题 */
-        .categories-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            align-items: start;
-        }
-        
-        .category {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .category-title {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid;
-            text-align: center;
-        }
-        
-        .category-1 .category-title { border-color: #3498db; } /* 视频平台 */
-        .category-2 .category-title { border-color: #e74c3c; } /* 短视频/社交 */
-        .category-3 .category-title { border-color: #2ecc71; } /* 新闻资讯 */
-        
-        /* 卡片样式 */
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .card-header {
-            padding: 25px 25px 20px;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .category-1 .card-header { background-color: #3498db; } /* 视频平台 */
-        .category-2 .card-header { background-color: #e74c3c; } /* 短视频/社交 */
-        .category-3 .card-header { background-color: #2ecc71; } /* 新闻资讯 */
-        
-        .card-body {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-        }
-        
-        /* 按钮样式 */
-        .btn-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+
+        .tip-container {
             width: 100%;
+            max-width: 750px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 45px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .btn {
-            display: flex;
-            flex-direction: column;
+
+        /* 顶部装饰条 */
+        .tip-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #e8f4fc;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 18px 12px;
-            border-radius: 12px;
-            text-decoration: none;
+            margin-bottom: 25px;
+        }
+
+        .icon i {
+            font-size: 30px;
+            color: #3498db;
+        }
+
+        .main-title {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 18px;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.25s ease;
+        }
+
+        .desc-text {
+            font-size: 16px;
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .desc-text strong {
+            color: #e74c3c;
+        }
+
+        /* 功能名称标签样式 */
+        .functions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin: 30px 0;
+        }
+
+        .func-tag {
+            padding: 12px 22px;
+            background: #f8f9fa;
+            border: 1px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .func-tag:hover {
+            background: #3498db;
             color: white;
-            border: none;
-            cursor: pointer;
-            min-height: 80px;
-            text-align: center;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
         }
-        
-        .btn i {
-            margin-bottom: 8px;
-            font-size: 1.5rem;
+
+        .warning-note {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #95a5a6;
+            line-height: 1.6;
         }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #3498db;
+            font-weight: 500;
         }
-        
-        /* 按钮品牌颜色 */
-        /* 视频平台按钮 */
-        .btn-bilibili { background-color: #fb7299; }
-        .btn-tengxun { background-color: #003791; }
-        .btn-iqiyi { background-color: #00c0ff; }
-        .btn-youku { background-color: #f60; }
-        
-        /* 短视频/社交按钮 */
-        .btn-douyin { background-color: #000; }
-        .btn-weibo { background-color: #e6162d; }
-        .btn-zhihu { background-color: #0084ff; }
-        .btn-xiaohongshu { background-color: #ff2442; }
-        
-        /* 新闻资讯按钮 */
-        .btn-yangshi { background-color: #cc0000; }
-        .btn-sina { background-color: #e6162d; }
-        .btn-wangyi { background-color: #c20c0c; }
-        .btn-people { background-color: #003c7e; }
-        
-        /* 响应式设计 */
-        @media (max-width: 1200px) {
-            .categories-container {
-                gap: 20px;
+
+        @media (max-width: 600px) {
+            .tip-container {
+                padding: 30px 20px;
             }
             
-            .card-body {
-                padding: 25px;
+            .main-title {
+                font-size: 22px;
             }
             
-            .btn {
-                padding: 15px 10px;
-                min-height: 75px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .categories-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-            
-            .category:nth-child(3) {
-                grid-column: span 2;
-                max-width: 600px;
-                margin: 0 auto;
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .categories-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .category:nth-child(3) {
-                grid-column: span 1;
-                max-width: 100%;
-            }
-            
-            body {
-                padding: 15px;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .btn-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .btn {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding: 15px 20px;
-                min-height: 60px;
-            }
-            
-            .btn i {
-                margin-bottom: 0;
-                margin-right: 12px;
-                font-size: 1.3rem;
-            }
-            
-            .card-header {
-                padding: 20px 20px 15px;
-                font-size: 1.4rem;
-            }
-            
-            .card-body {
-                padding: 20px;
-            }
-            
-            .category-title {
-                font-size: 1.6rem;
+            .func-tag {
+                padding: 10px 16px;
+                font-size: 14px;
             }
         }
     </style>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="categories-container">
-            <!-- 视频平台分类 -->
-            <div class="category category-1">
-                <h2 class="category-title">视频平台</h2>
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-film"></i> 视频影视
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-grid">
-                            <a href="https://www.bilibili.com" target="_blank" class="btn btn-bilibili">
-                                <i class="fab fa-bilibili"></i> 哔哩哔哩
-                            </a>
-                            <a href="https://v.qq.com" target="_blank" class="btn btn-tengxun">
-                                <i class="fab fa-tencent-weibo"></i> 腾讯视频
-                            </a>
-                            <a href="https://www.iqiyi.com" target="_blank" class="btn btn-iqiyi">
-                                <i class="fas fa-play-circle"></i> 爱奇艺
-                            </a>
-                            <a href="https://www.youku.com" target="_blank" class="btn btn-youku">
-                                <i class="fas fa-tv"></i> 优酷
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 短视频/社交分类 -->
-            <div class="category category-2">
-                <h2 class="category-title">短视频 / 社交</h2>
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-video"></i> 社交平台
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-grid">
-                            <a href="https://www.douyin.com" target="_blank" class="btn btn-douyin">
-                                <i class="fab fa-tiktok"></i> 抖音
-                            </a>
-                            <a href="https://weibo.com" target="_blank" class="btn btn-weibo">
-                                <i class="fab fa-weibo"></i> 微博
-                            </a>
-                            <a href="https://www.zhihu.com" target="_blank" class="btn btn-zhihu">
-                                <i class="fab fa-zhihu"></i> 知乎
-                            </a>
-                            <a href="https://www.xiaohongshu.com" target="_blank" class="btn btn-xiaohongshu">
-                                <i class="fas fa-book"></i> 小红书
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 新闻资讯分类 -->
-            <div class="category category-3">
-                <h2 class="category-title">新闻资讯</h2>
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-newspaper"></i> 新闻媒体
-                    </div>
-                    <div class="card-body">
-                        <div class="btn-grid">
-                            <a href="https://news.cctv.com" target="_blank" class="btn btn-yangshi">
-                                <i class="fas fa-tv"></i> 央视新闻
-                            </a>
-                            <a href="https://news.sina.com.cn" target="_blank" class="btn btn-sina">
-                                <i class="fas fa-globe"></i> 新浪新闻
-                            </a>
-                            <a href="https://news.163.com" target="_blank" class="btn btn-wangyi">
-                                <i class="fas fa-newspaper"></i> 网易新闻
-                            </a>
-                            <a href="https://www.people.com.cn" target="_blank" class="btn btn-people">
-                                <i class="fas fa-newspaper"></i> 人民日报
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="tip-container">
+        <div class="icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
         </div>
-    </div>
+        
+        <h1 class="main-title">站外链接温馨提示</h1>
+        
+        <p class="desc-text">
+            检测到您即将访问以下功能入口：<br>
+            <strong>草稿、认识、数据、详情、日历、拾物</strong>
+        </p>
+        
+        <p class="desc-text">
+            以上所有功能及跳转链接，<strong>均属于站外第三方链接</strong>，<br>
+            点击后将离开当前站点，请自行判断内容安全性，谨慎操作。
+        </p>
 
-    <script>
-        // 添加点击效果
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-    </script>
+        <!-- 展示所有功能名称 -->
+        <div class="functions">
+            <span class="func-tag">草稿</span>
+            <span class="func-tag">认识</span>
+            <span class="func-tag">数据</span>
+            <span class="func-tag">详情</span>
+            <span class="func-tag">日历</span>
+            <span class="func-tag">拾物</span>
+        </div>
+
+        <p class="warning-note">
+            ⚠️ 温馨提醒：请勿随意在外部链接中输入账号、密码、验证码等隐私信息，<br>
+            以防造成信息泄露。
+        </p>
+
+        <p class="footer-note">所有链接均为公开网络资源，请知晓 ~</p>
+    </div>
 </body>
 </html>
